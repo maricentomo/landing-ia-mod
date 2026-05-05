@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links · IA MOD</title>
+
+  <style>
+    @font-face {
+      font-family: 'Bricolage Grotesque';
+      src: url('../fonts/BricolageGrotesque_48pt-ExtraBold.ttf') format('truetype');
+      font-weight: 800; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Bricolage Grotesque';
+      src: url('../fonts/BricolageGrotesque_24pt-Bold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Bricolage Grotesque';
+      src: url('../fonts/BricolageGrotesque_48pt-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --orange:        #FD5C02;
+      --orange-hover:  #D94E02;
+      --black:         #000000;
+      --offwhite:      #F2EEE5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--black);
+      color: var(--offwhite);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .logo-asterisk {
+      width: 100px;
+      height: auto;
+      animation: spin 8s linear infinite;
+    }
+
+    .logo-wordmark {
+      width: 80px;
+      height: auto;
+      opacity: 1;
+    }
+
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 12px;
+      border: 1.5px solid var(--orange);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      background: transparent;
+      color: var(--offwhite);
+      transition: background 150ms ease-out, color 150ms ease-out, transform 100ms ease-out;
+      cursor: pointer;
+    }
+
+    .link-btn:hover {
+      background: var(--orange);
+      color: var(--black);
+      transform: translateY(-1px);
+    }
+    .link-btn:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <img class="logo-asterisk" src="../assets/asterisk-orange.png" alt="IA MOD">
+
+    <nav class="links">
+      <a class="link-btn" href="https://iamod.com.br/" target="_blank" rel="noopener">
+        Agenda Inteligente
+      </a>
+      <a class="link-btn" href="https://instagram.com/iamod.digital" target="_blank" rel="noopener">
+        Instagram
+      </a>
+      <a class="link-btn" href="https://wa.me/5511933663007" target="_blank" rel="noopener">
+        Contato
+      </a>
+    </nav>
+
+    <img class="logo-wordmark" src="../assets/logo-offwhite.png" alt="IA MOD">
+  </div>
+</body>
+</html>
