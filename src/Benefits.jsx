@@ -1,6 +1,7 @@
 // BENEFITS — what changes in practice. Two-column with mascot.
 
 const Benefits = () => {
+  const isMobile = useIsMobile();
   const items = [
   { k: '01', t: 'Você para de responder a mesma pergunta o dia inteiro.' },
   { k: '02', t: 'Seu cliente agenda mesmo fora do horário comercial.' },
@@ -9,18 +10,17 @@ const Benefits = () => {
   { k: '05', t: 'O cliente recebe lembrete no dia do atendimento.' },
   { k: '06', t: 'Seu negócio passa uma imagem mais profissional.' }];
 
-
   return (
     <section style={{
       background: 'var(--black)',
-      padding: '140px 0',
+      padding: isMobile ? '80px 0' : '140px 0',
       position: 'relative',
       overflow: 'hidden'
     }}>
       <div className="container" style={{
         display: 'grid',
-        gridTemplateColumns: '0.85fr 1.15fr',
-        gap: '64px',
+        gridTemplateColumns: isMobile ? '1fr' : '0.85fr 1.15fr',
+        gap: isMobile ? '48px' : '64px',
         alignItems: 'center'
       }}>
         <div className="reveal">
@@ -28,7 +28,7 @@ const Benefits = () => {
           <h2 style={{
             fontFamily: "'Bricolage Grotesque', sans-serif",
             fontWeight: 800,
-            fontSize: 'clamp(40px, 5vw, 72px)',
+            fontSize: 'clamp(36px, 5vw, 72px)',
             lineHeight: 0.95,
             letterSpacing: '-0.03em',
             textTransform: 'uppercase',
@@ -39,37 +39,30 @@ const Benefits = () => {
           </h2>
           <div style={{
             position: 'relative',
-            width: '100%', maxWidth: '380px',
+            width: '100%', maxWidth: isMobile ? '100%' : '380px',
             aspectRatio: '1',
             borderRadius: '24px',
-            background: 'var(--offwhite)',
             overflow: 'hidden',
-            border: '2px solid #000', opacity: "1", backgroundColor: "rgba(242, 238, 229, 0)"
+            border: '2px solid #000',
+            backgroundColor: 'rgba(242, 238, 229, 0)'
           }}>
             <img src="assets/procrastinando.png" alt=""
-            style={{
-              width: '100%', height: '100%', objectFit: 'contain',
-              animation: 'float-y 6s ease-in-out infinite'
-            }} />
-            
+            style={{ width: '100%', height: '100%', objectFit: 'contain', animation: 'float-y 6s ease-in-out infinite' }} />
             <div style={{
               position: 'absolute', bottom: '16px', left: '16px', right: '16px',
               background: '#000', color: 'var(--offwhite)',
               padding: '12px 14px', borderRadius: '12px',
               fontFamily: "'Bricolage Grotesque', sans-serif",
               fontWeight: 800, fontSize: '14px',
-              letterSpacing: '-0.01em',
-              textAlign: 'center'
+              letterSpacing: '-0.01em', textAlign: 'center'
             }}>
               <span style={{ color: 'var(--orange)' }}>VOCÊ</span> NO MODO RELAX.
             </div>
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-          {items.map((it, i) =>
-          <BenefitCard key={i} {...it} delay={i * 60} />
-          )}
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '16px' }}>
+          {items.map((it, i) => <BenefitCard key={i} {...it} delay={i * 60} />)}
         </div>
       </div>
     </section>);
@@ -94,23 +87,11 @@ const BenefitCard = ({ k, t, delay }) => {
       boxShadow: hover ? '6px 6px 0 var(--orange)' : 'none',
       transitionDelay: `${delay}ms`,
       display: 'flex', flexDirection: 'column', gap: '14px',
-      minHeight: '160px'
+      minHeight: '140px'
     }}>
-      
-      <div style={{
-        fontFamily: "'Bricolage Grotesque', sans-serif",
-        fontWeight: 800, fontSize: '32px',
-        color: hover ? '#000' : 'var(--orange)',
-        letterSpacing: '-0.03em',
-        lineHeight: 1
-      }}>{k}</div>
-      <div style={{
-        fontFamily: "'DM Sans', sans-serif",
-        fontSize: '15px', lineHeight: 1.45,
-        fontWeight: 500
-      }}>{t}</div>
+      <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '32px', color: hover ? '#000' : 'var(--orange)', letterSpacing: '-0.03em', lineHeight: 1 }}>{k}</div>
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '15px', lineHeight: 1.45, fontWeight: 500 }}>{t}</div>
     </div>);
-
 };
 
 window.Benefits = Benefits;

@@ -1,6 +1,7 @@
 // NICHES — orange section with rotating tag pile
 
 const Niches = () => {
+  const isMobile = useIsMobile();
   const niches = [
     { label: 'Barbearias', icon: '✂' },
     { label: 'Salões de beleza', icon: '✦' },
@@ -16,28 +17,22 @@ const Niches = () => {
     <section style={{
       background: 'var(--orange)',
       color: '#000',
-      padding: '120px 0',
+      padding: isMobile ? '80px 0' : '120px 0',
       position: 'relative',
       overflow: 'hidden',
       borderTop: '2px solid #000',
       borderBottom: '2px solid #000',
     }}>
-      <Asterisk size={300} color="black" style={{
-        position: 'absolute', top: '-80px', right: '-80px',
-        opacity: 0.08, animation: 'spin-slow 30s linear infinite',
-      }} />
-      <Asterisk size={200} color="black" style={{
-        position: 'absolute', bottom: '-60px', left: '-40px',
-        opacity: 0.1, animation: 'spin-rev 24s linear infinite',
-      }} />
+      <Asterisk size={300} color="black" style={{ position: 'absolute', top: '-80px', right: '-80px', opacity: 0.08, animation: 'spin-slow 30s linear infinite' }} />
+      <Asterisk size={200} color="black" style={{ position: 'absolute', bottom: '-60px', left: '-40px', opacity: 0.1, animation: 'spin-rev 24s linear infinite' }} />
 
       <div className="container" style={{ position: 'relative' }}>
-        <div className="reveal" style={{ maxWidth: '780px', marginBottom: '64px' }}>
+        <div className="reveal" style={{ maxWidth: '780px', marginBottom: isMobile ? '40px' : '64px' }}>
           <Eyebrow color="#000">Para quem é</Eyebrow>
           <h2 style={{
             fontFamily: "'Bricolage Grotesque', sans-serif",
             fontWeight: 800,
-            fontSize: 'clamp(40px, 5.4vw, 80px)',
+            fontSize: 'clamp(36px, 5.4vw, 80px)',
             lineHeight: 0.95,
             letterSpacing: '-0.03em',
             textTransform: 'uppercase',
@@ -57,7 +52,7 @@ const Niches = () => {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
           gap: '16px',
         }}>
           {niches.map((n, i) => (
@@ -87,21 +82,12 @@ const NicheCard = ({ label, icon, delay }) => {
         transform: hover ? 'translate(-4px, -4px) rotate(-1deg)' : 'none',
         boxShadow: hover ? '8px 8px 0 #000' : '0 0 0 #000',
         display: 'flex', flexDirection: 'column', gap: '20px',
-        minHeight: '160px',
+        minHeight: '140px',
         transitionDelay: `${delay}ms`,
       }}
     >
-      <div style={{
-        fontFamily: "'Bricolage Grotesque', sans-serif",
-        fontSize: '40px', fontWeight: 800, lineHeight: 1,
-        color: hover ? 'var(--orange)' : 'var(--orange)',
-      }}>{icon}</div>
-      <div style={{
-        fontFamily: "'Bricolage Grotesque', sans-serif",
-        fontWeight: 800, fontSize: '20px',
-        letterSpacing: '-0.02em',
-        marginTop: 'auto',
-      }}>{label}</div>
+      <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontSize: '40px', fontWeight: 800, lineHeight: 1, color: 'var(--orange)' }}>{icon}</div>
+      <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', marginTop: 'auto' }}>{label}</div>
     </div>
   );
 };

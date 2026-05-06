@@ -50,6 +50,9 @@
 
   /* ─── UTIL ─── */
   .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 767px) {
+    .container { padding: 0 20px; }
+  }
 
   /* ─── ANIMATIONS ─── */
   @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }

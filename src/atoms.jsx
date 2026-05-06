@@ -1,6 +1,16 @@
 // Shared brand atoms used across components.
 // Globally exposed via window so each Babel script can use them.
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+  React.useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
+  return isMobile;
+};
+
 const Asterisk = ({ size = 24, color = 'orange', spin = false, className = '', style = {} }) => {
   const src = color === 'orange' ? 'assets/asterisk-orange.png'
             : color === 'black'  ? 'assets/asterisk-black.png'
@@ -168,4 +178,4 @@ const Marquee = () => {
   );
 };
 
-Object.assign(window, { Asterisk, Eyebrow, Btn, ChatBubble, Ping, Marquee });
+Object.assign(window, { useIsMobile, Asterisk, Eyebrow, Btn, ChatBubble, Ping, Marquee });
