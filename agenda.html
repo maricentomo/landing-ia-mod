@@ -365,6 +365,7 @@
       if (!horarioSelecionado) return;
 
       const data = dataISO(dataSelecionada);
+      const textoFinal = data + " às " + horarioSelecionado;
 
       mensagem.textContent = "Horário selecionado: " + formatarDataBR(dataSelecionada) + " às " + horarioSelecionado;
       mensagem.style.display = "block";
@@ -372,10 +373,7 @@
       window.parent.postMessage(
         {
           name: "horario_confirmado",
-          data: {
-            data: data,
-            horario: horarioSelecionado
-          }
+          data: textoFinal
         },
         "*"
       );
