@@ -364,8 +364,7 @@
     confirmar.addEventListener("click", () => {
       if (!horarioSelecionado) return;
 
-      const data = dataISO(dataSelecionada);
-      const textoFinal = data + " às " + horarioSelecionado;
+   const textoFinal = formatarDataBR(dataSelecionada) + " às " + horarioSelecionado;
 
       mensagem.textContent = "Horário selecionado: " + formatarDataBR(dataSelecionada) + " às " + horarioSelecionado;
       mensagem.style.display = "block";
