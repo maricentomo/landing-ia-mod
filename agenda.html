@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agenda Faustino</title>
+  <title>Agenda</title>
 
   <style>
     * {
@@ -232,6 +232,7 @@
     const params = new URLSearchParams(window.location.search);
 
     const dadosTypebot = {
+      cliente: params.get("cliente") || "",
       servico: params.get("servico") || "",
       barbeiro: params.get("barbeiro") || "",
       nome: params.get("nome") || "",
@@ -338,6 +339,7 @@
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
+            cliente: dadosTypebot.cliente,
             data: dataISO(dataSelecionada),
             data_formatada: formatarDataBR(dataSelecionada),
             servico: dadosTypebot.servico,
