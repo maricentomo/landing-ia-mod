@@ -154,6 +154,13 @@
       font-size: 13px;
       display: none;
     }
+
+    .aviso {
+      grid-column: 1 / -1;
+      color: #cdbfad;
+      margin: 0;
+      font-size: 13px;
+    }
   </style>
 </head>
 
@@ -187,6 +194,17 @@
   </div>
 
   <script>
+    const N8N_BUSCAR_HORARIOS = "https://bot-n8n.k474gt.easypanel.host/webhook/buscar-horarios";
+
+    const params = new URLSearchParams(window.location.search);
+
+    const dadosTypebot = {
+      servico: params.get("servico") || "",
+      barbeiro: params.get("barbeiro") || "",
+      nome: params.get("nome") || "",
+      telefone: params.get("telefone") || ""
+    };
+
     const calendar = document.getElementById("calendar");
     const monthTitle = document.getElementById("monthTitle");
     const horariosContainer = document.getElementById("horarios");
@@ -223,29 +241,6 @@
       const mes = String(data.getMonth() + 1).padStart(2, "0");
       const dia = String(data.getDate()).padStart(2, "0");
       return `${ano}-${mes}-${dia}`;
-    }
-
-    function gerarHorariosTeste(data) {
-      const diaSemana = data.getDay();
-
-      if (diaSemana === 0) return [];
-
-      if (diaSemana === 6) {
-        return [
-          "08:00", "08:45", "09:30",
-          "10:15", "11:00", "13:00",
-          "13:45", "14:30", "15:15",
-          "16:00"
-        ];
-      }
-
-      return [
-        "08:45", "09:00", "09:45",
-        "10:30", "11:30", "12:00",
-        "13:20", "13:45", "15:30",
-        "15:45", "16:05", "16:30",
-        "18:00", "19:00"
-      ];
     }
 
     function renderizarCalendario() {
@@ -290,21 +285,48 @@
           mensagem.style.display = "none";
 
           renderizarCalendario();
-          renderizarHorarios();
+          carregarHorarios();
         });
 
         calendar.appendChild(botao);
       }
     }
 
-    function renderizarHorarios() {
-      horariosContainer.innerHTML = "";
+    async function carregarHorarios() {
+      horariosContainer.innerHTML = "<p class='aviso'>Carregando horários...</p>";
       selectedLabel.textContent = formatarDataBR(dataSelecionada);
+      confirmar.style.display = "none";
 
-      const horarios = gerarHorariosTeste(dataSelecionada);
+      try {
+        const resposta = await fetch(N8N_BUSCAR_HORARIOS, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            data: dataISO(dataSelecionada),
+            data_formatada: formatarDataBR(dataSelecionada),
+            servico: dadosTypebot.servico,
+            barbeiro: dadosTypebot.barbeiro,
+            nome: dadosTypebot.nome,
+            telefone: dadosTypebot.telefone
+          })
+        });
+
+        const dados = await resposta.json();
+        const horarios = dados.horarios || [];
+
+        renderizarHorarios(horarios);
+      } catch (erro) {
+        horariosContainer.innerHTML = "<p class='aviso'>Erro ao carregar horários.</p>";
+      }
+    }
+
+    function renderizarHorarios(horarios) {
+      horariosContainer.innerHTML = "";
 
       if (!horarios.length) {
-        horariosContainer.innerHTML = "<p style='grid-column:1/-1;color:#cdbfad;margin:0;font-size:13px;'>Sem horários disponíveis nesse dia.</p>";
+        horariosContainer.innerHTML = "<p class='aviso'>Sem horários disponíveis nesse dia.</p>";
         return;
       }
 
@@ -364,9 +386,9 @@
     confirmar.addEventListener("click", () => {
       if (!horarioSelecionado) return;
 
-   const textoFinal = formatarDataBR(dataSelecionada) + " às " + horarioSelecionado;
+      const textoFinal = formatarDataBR(dataSelecionada) + " às " + horarioSelecionado;
 
-      mensagem.textContent = "Horário selecionado: " + formatarDataBR(dataSelecionada) + " às " + horarioSelecionado;
+      mensagem.textContent = "Horário selecionado: " + textoFinal;
       mensagem.style.display = "block";
 
       window.parent.postMessage(
@@ -379,7 +401,7 @@
     });
 
     renderizarCalendario();
-    renderizarHorarios();
+    carregarHorarios();
   </script>
 </body>
 </html>
