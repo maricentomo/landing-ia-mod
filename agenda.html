@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda IA MOD</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .agenda {
+      padding: 20px;
+      background: #111;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 24px;
+    }
+
+    .horarios {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    button {
+      height: 52px;
+      border-radius: 10px;
+      border: 2px solid #9b6a4b;
+      background: #151515;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    button.ativo {
+      background: #c98252;
+      border-color: #c98252;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="agenda">
+    <h2>Escolha seu horário</h2>
+
+    <div class="horarios">
+      <button>08:45</button>
+      <button class="ativo">09:00</button>
+      <button>09:45</button>
+      <button>11:30</button>
+      <button>13:20</button>
+      <button>13:45</button>
+      <button>15:30</button>
+      <button class="ativo">16:30</button>
+    </div>
+  </div>
+</body>
+</html>
