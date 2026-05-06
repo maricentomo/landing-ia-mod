@@ -147,6 +147,23 @@
       display: none;
     }
 
+    .trocar-profissional {
+      width: 100%;
+      margin-top: 10px;
+      height: 44px;
+      border: 1.5px solid #5a2326;
+      border-radius: 14px;
+      background: transparent;
+      color: #e9decf;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .trocar-profissional:hover {
+      background: #5a2326;
+    }
+
     .mensagem {
       margin: 10px 0 0;
       text-align: center;
@@ -190,6 +207,10 @@
 
     <button class="confirmar" id="confirmar">Confirmar horário</button>
 
+    <button class="trocar-profissional" id="trocarProfissional">
+      Trocar profissional
+    </button>
+
     <p class="mensagem" id="mensagem"></p>
   </div>
 
@@ -211,6 +232,7 @@
     const selectedLabel = document.getElementById("selectedLabel");
     const confirmar = document.getElementById("confirmar");
     const mensagem = document.getElementById("mensagem");
+    const trocarProfissional = document.getElementById("trocarProfissional");
 
     const prevMonth = document.getElementById("prevMonth");
     const nextMonth = document.getElementById("nextMonth");
@@ -370,6 +392,7 @@
       }
 
       renderizarCalendario();
+      carregarHorarios();
     });
 
     nextMonth.addEventListener("click", () => {
@@ -381,6 +404,7 @@
       }
 
       renderizarCalendario();
+      carregarHorarios();
     });
 
     confirmar.addEventListener("click", () => {
@@ -395,6 +419,16 @@
         {
           name: "horario_confirmado",
           data: textoFinal
+        },
+        "*"
+      );
+    });
+
+    trocarProfissional.addEventListener("click", () => {
+      window.parent.postMessage(
+        {
+          name: "horario_confirmado",
+          data: "TROCAR_BARBEIRO"
         },
         "*"
       );
