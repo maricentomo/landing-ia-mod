@@ -21,94 +21,135 @@
       width: 100%;
       max-width: 540px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 14px;
       background: #000000;
     }
 
     .card {
       background: #5a2326;
       border-radius: 28px;
-      padding: 16px;
+      padding: 14px;
     }
 
     .inner {
       background: #000000;
       border-radius: 22px;
-      padding: 18px;
+      padding: 16px;
       border: 1px solid rgba(233, 222, 207, 0.08);
-    }
-
-    .logo-box {
-      width: 100%;
-      background: #5a2326;
-      border-radius: 24px;
-      padding: 10px;
-      margin-bottom: 16px;
-    }
-
-    .logo-box img {
-      width: 100%;
-      display: block;
-      border-radius: 18px;
     }
 
     h2 {
       margin: 0 0 6px;
-      font-size: 24px;
-      font-weight: 800;
+      font-size: 23px;
+      font-weight: 900;
       color: #e9decf;
-      line-height: 1.1;
     }
 
     .subtitulo {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       color: #cdbfad;
       font-size: 14px;
       line-height: 1.35;
     }
 
-    .dias {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .month-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
       gap: 10px;
-      margin-bottom: 18px;
     }
 
-    .dia {
-      height: 44px;
-      border-radius: 14px;
+    .month-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #e9decf;
+      text-transform: capitalize;
+      text-align: center;
+      flex: 1;
+    }
+
+    .nav-btn {
+      width: 38px;
+      height: 36px;
+      border-radius: 12px;
       border: none;
       background: #355239;
       color: #e9decf;
-      font-size: 14px;
-      font-weight: 800;
+      font-size: 20px;
+      font-weight: 900;
       cursor: pointer;
     }
 
-    .dia.ativo {
-      background: #406345;
-      box-shadow: 0 0 0 2px rgba(233, 222, 207, 0.18) inset;
+    .weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .weekday {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 900;
+      color: #cdbfad;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .day {
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid #5a2326;
+      background: #111111;
+      color: #e9decf;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .day.empty {
+      visibility: hidden;
+    }
+
+    .day.disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .day.selected {
+      background: #355239;
+      border-color: #355239;
+      box-shadow: 0 0 0 2px rgba(233, 222, 207, 0.15) inset;
+    }
+
+    .selected-label {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: #e9decf;
+      font-weight: 800;
     }
 
     .horarios {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
 
     .horario {
-      height: 54px;
+      height: 50px;
       border-radius: 12px;
       border: 1.5px solid #8d6a57;
       background: #111111;
       color: #f0e5d6;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 900;
       cursor: pointer;
-    }
-
-    .horario:hover {
-      background: #1b1b1b;
     }
 
     .horario.selecionado {
@@ -119,20 +160,16 @@
 
     .confirmar {
       width: 100%;
-      margin-top: 20px;
-      height: 54px;
+      margin-top: 18px;
+      height: 52px;
       border: none;
       border-radius: 16px;
       background: #355239;
       color: #e9decf;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 900;
       cursor: pointer;
       display: none;
-    }
-
-    .confirmar:hover {
-      background: #406345;
     }
 
     .mensagem {
@@ -145,38 +182,28 @@
 
     @media (max-width: 480px) {
       .agenda {
-        padding: 12px;
+        padding: 10px;
       }
 
       .card {
-        border-radius: 24px;
         padding: 12px;
       }
 
       .inner {
-        border-radius: 20px;
-        padding: 16px;
-      }
-
-      h2 {
-        font-size: 22px;
+        padding: 14px;
       }
 
       .horarios {
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
       }
 
       .horario {
-        height: 50px;
-        font-size: 17px;
+        height: 48px;
+        font-size: 16px;
       }
 
-      .dias {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .dia {
+      .day {
+        height: 36px;
         font-size: 13px;
       }
     }
@@ -188,13 +215,27 @@
     <div class="card">
       <div class="inner">
         <h2>Escolha seu horário</h2>
-        <p class="subtitulo">Selecione o dia e depois toque no horário disponível.</p>
+        <p class="subtitulo">Selecione uma data no calendário e depois toque no horário disponível.</p>
 
-        <div class="dias">
-          <button class="dia ativo" data-dia="Hoje">Hoje</button>
-          <button class="dia" data-dia="Amanhã">Amanhã</button>
-          <button class="dia" data-dia="Sexta">Sexta</button>
+        <div class="month-header">
+          <button class="nav-btn" id="prevMonth">‹</button>
+          <div class="month-title" id="monthTitle"></div>
+          <button class="nav-btn" id="nextMonth">›</button>
         </div>
+
+        <div class="weekdays">
+          <div class="weekday">SEG</div>
+          <div class="weekday">TER</div>
+          <div class="weekday">QUA</div>
+          <div class="weekday">QUI</div>
+          <div class="weekday">SEX</div>
+          <div class="weekday">SÁB</div>
+          <div class="weekday">DOM</div>
+        </div>
+
+        <div class="calendar" id="calendar"></div>
+
+        <p class="selected-label" id="selectedLabel"></p>
 
         <div class="horarios" id="horarios"></div>
 
@@ -206,40 +247,130 @@
   </div>
 
   <script>
-    const horariosPorDia = {
-      "Hoje": [
-        "05:00", "08:45", "09:00", "09:45",
-        "11:30", "12:00", "13:20", "13:45",
-        "15:30", "15:45", "16:05", "16:30",
-        "18:00", "21:00"
-      ],
-      "Amanhã": [
-        "08:00", "08:40", "09:20", "10:00",
-        "10:40", "11:20", "14:00", "14:40",
-        "15:20", "16:00", "16:40", "17:20"
-      ],
-      "Sexta": [
-        "09:00", "09:45", "10:30", "11:15",
-        "13:00", "13:45", "14:30", "15:15",
-        "16:00", "16:45", "17:30", "18:15"
-      ]
-    };
-
-    const dias = document.querySelectorAll(".dia");
+    const calendar = document.getElementById("calendar");
+    const monthTitle = document.getElementById("monthTitle");
     const horariosContainer = document.getElementById("horarios");
+    const selectedLabel = document.getElementById("selectedLabel");
     const confirmar = document.getElementById("confirmar");
     const mensagem = document.getElementById("mensagem");
 
-    let diaSelecionado = "Hoje";
+    const prevMonth = document.getElementById("prevMonth");
+    const nextMonth = document.getElementById("nextMonth");
+
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
+    let mesAtual = hoje.getMonth();
+    let anoAtual = hoje.getFullYear();
+    let dataSelecionada = new Date(hoje);
     let horarioSelecionado = "";
+
+    const nomesMeses = [
+      "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+      "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+    ];
+
+    function formatarDataBR(data) {
+      return data.toLocaleDateString("pt-BR", {
+        weekday: "long",
+        day: "2-digit",
+        month: "2-digit"
+      });
+    }
+
+    function dataISO(data) {
+      const ano = data.getFullYear();
+      const mes = String(data.getMonth() + 1).padStart(2, "0");
+      const dia = String(data.getDate()).padStart(2, "0");
+      return `${ano}-${mes}-${dia}`;
+    }
+
+    function gerarHorariosTeste(data) {
+      const diaSemana = data.getDay();
+
+      // Domingo fechado
+      if (diaSemana === 0) return [];
+
+      // Sábado
+      if (diaSemana === 6) {
+        return [
+          "08:00", "08:45", "09:30", "10:15",
+          "11:00", "13:00", "13:45", "14:30",
+          "15:15", "16:00"
+        ];
+      }
+
+      // Segunda a sexta
+      return [
+        "08:45", "09:00", "09:45", "10:30",
+        "11:30", "12:00", "13:20", "13:45",
+        "15:30", "15:45", "16:05", "16:30",
+        "18:00", "19:00"
+      ];
+    }
+
+    function renderizarCalendario() {
+      calendar.innerHTML = "";
+
+      monthTitle.textContent = `${nomesMeses[mesAtual]} ${anoAtual}`;
+
+      const primeiroDia = new Date(anoAtual, mesAtual, 1);
+      const ultimoDia = new Date(anoAtual, mesAtual + 1, 0);
+
+      // Ajusta para calendário começando na segunda-feira
+      const espacosAntes = (primeiroDia.getDay() + 6) % 7;
+
+      for (let i = 0; i < espacosAntes; i++) {
+        const vazio = document.createElement("button");
+        vazio.className = "day empty";
+        calendar.appendChild(vazio);
+      }
+
+      for (let dia = 1; dia <= ultimoDia.getDate(); dia++) {
+        const data = new Date(anoAtual, mesAtual, dia);
+        data.setHours(0, 0, 0, 0);
+
+        const botao = document.createElement("button");
+        botao.className = "day";
+        botao.textContent = dia;
+
+        const passado = data < hoje;
+        const domingo = data.getDay() === 0;
+
+        if (passado || domingo) {
+          botao.classList.add("disabled");
+        }
+
+        if (dataISO(data) === dataISO(dataSelecionada)) {
+          botao.classList.add("selected");
+        }
+
+        botao.addEventListener("click", () => {
+          if (passado || domingo) return;
+
+          dataSelecionada = data;
+          horarioSelecionado = "";
+          confirmar.style.display = "none";
+          mensagem.style.display = "none";
+
+          renderizarCalendario();
+          renderizarHorarios();
+        });
+
+        calendar.appendChild(botao);
+      }
+    }
 
     function renderizarHorarios() {
       horariosContainer.innerHTML = "";
-      confirmar.style.display = "none";
-      mensagem.style.display = "none";
-      horarioSelecionado = "";
+      selectedLabel.textContent = formatarDataBR(dataSelecionada);
 
-      const horarios = horariosPorDia[diaSelecionado] || [];
+      const horarios = gerarHorariosTeste(dataSelecionada);
+
+      if (!horarios.length) {
+        horariosContainer.innerHTML = "<p style='grid-column:1/-1;color:#cdbfad;margin:0;'>Sem horários disponíveis nesse dia.</p>";
+        return;
+      }
 
       horarios.forEach((hora) => {
         const botao = document.createElement("button");
@@ -263,27 +394,48 @@
       });
     }
 
-    dias.forEach((botao) => {
-      botao.addEventListener("click", () => {
-        dias.forEach((item) => item.classList.remove("ativo"));
-        botao.classList.add("ativo");
+    prevMonth.addEventListener("click", () => {
+      const mesAnterior = new Date(anoAtual, mesAtual - 1, 1);
 
-        diaSelecionado = botao.dataset.dia;
-        renderizarHorarios();
-      });
+      if (
+        mesAnterior.getFullYear() < hoje.getFullYear() ||
+        (mesAnterior.getFullYear() === hoje.getFullYear() && mesAnterior.getMonth() < hoje.getMonth())
+      ) {
+        return;
+      }
+
+      mesAtual--;
+      if (mesAtual < 0) {
+        mesAtual = 11;
+        anoAtual--;
+      }
+
+      renderizarCalendario();
+    });
+
+    nextMonth.addEventListener("click", () => {
+      mesAtual++;
+      if (mesAtual > 11) {
+        mesAtual = 0;
+        anoAtual++;
+      }
+
+      renderizarCalendario();
     });
 
     confirmar.addEventListener("click", () => {
       if (!horarioSelecionado) return;
 
-      mensagem.textContent = "Horário selecionado: " + diaSelecionado + " às " + horarioSelecionado;
+      const data = dataISO(dataSelecionada);
+
+      mensagem.textContent = "Horário selecionado: " + formatarDataBR(dataSelecionada) + " às " + horarioSelecionado;
       mensagem.style.display = "block";
 
       window.parent.postMessage(
         {
           name: "horario_confirmado",
           data: {
-            data: diaSelecionado,
+            data: data,
             horario: horarioSelecionado
           }
         },
@@ -291,6 +443,7 @@
       );
     });
 
+    renderizarCalendario();
     renderizarHorarios();
   </script>
 </body>
