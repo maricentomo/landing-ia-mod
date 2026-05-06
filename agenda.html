@@ -3,24 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agenda IA MOD</title>
+  <title>Agenda Faustino</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background: #111;
+      background: #000000;
       font-family: Arial, sans-serif;
-      color: white;
+      color: #e9decf;
     }
 
     .agenda {
-      padding: 20px;
-      background: #111;
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 16px;
+      background: #000000;
+    }
+
+    .card {
+      background: #5a2326;
+      border-radius: 28px;
+      padding: 16px;
+    }
+
+    .inner {
+      background: #000000;
+      border-radius: 22px;
+      padding: 18px;
+      border: 1px solid rgba(233, 222, 207, 0.08);
+    }
+
+    .logo-box {
+      width: 100%;
+      background: #5a2326;
+      border-radius: 24px;
+      padding: 10px;
+      margin-bottom: 16px;
+    }
+
+    .logo-box img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
     }
 
     h2 {
-      margin: 0 0 18px;
+      margin: 0 0 6px;
       font-size: 24px;
+      font-weight: 800;
+      color: #e9decf;
+      line-height: 1.1;
+    }
+
+    .subtitulo {
+      margin: 0 0 18px;
+      color: #cdbfad;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .dias {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .dia {
+      height: 44px;
+      border-radius: 14px;
+      border: none;
+      background: #355239;
+      color: #e9decf;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .dia.ativo {
+      background: #406345;
+      box-shadow: 0 0 0 2px rgba(233, 222, 207, 0.18) inset;
     }
 
     .horarios {
@@ -29,37 +96,202 @@
       gap: 12px;
     }
 
-    button {
-      height: 52px;
-      border-radius: 10px;
-      border: 2px solid #9b6a4b;
-      background: #151515;
-      color: white;
+    .horario {
+      height: 54px;
+      border-radius: 12px;
+      border: 1.5px solid #8d6a57;
+      background: #111111;
+      color: #f0e5d6;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 900;
+      cursor: pointer;
     }
 
-    button.ativo {
-      background: #c98252;
-      border-color: #c98252;
+    .horario:hover {
+      background: #1b1b1b;
+    }
+
+    .horario.selecionado {
+      background: #355239;
+      border-color: #355239;
+      color: #e9decf;
+    }
+
+    .confirmar {
+      width: 100%;
+      margin-top: 20px;
+      height: 54px;
+      border: none;
+      border-radius: 16px;
+      background: #355239;
+      color: #e9decf;
+      font-size: 17px;
+      font-weight: 900;
+      cursor: pointer;
+      display: none;
+    }
+
+    .confirmar:hover {
+      background: #406345;
+    }
+
+    .mensagem {
+      margin: 14px 0 0;
+      text-align: center;
+      color: #e9decf;
+      font-size: 14px;
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .agenda {
+        padding: 12px;
+      }
+
+      .card {
+        border-radius: 24px;
+        padding: 12px;
+      }
+
+      .inner {
+        border-radius: 20px;
+        padding: 16px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .horarios {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .horario {
+        height: 50px;
+        font-size: 17px;
+      }
+
+      .dias {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .dia {
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="agenda">
-    <h2>Escolha seu horário</h2>
+    <div class="card">
+      <div class="inner">
+        <h2>Escolha seu horário</h2>
+        <p class="subtitulo">Selecione o dia e depois toque no horário disponível.</p>
 
-    <div class="horarios">
-      <button>08:45</button>
-      <button class="ativo">09:00</button>
-      <button>09:45</button>
-      <button>11:30</button>
-      <button>13:20</button>
-      <button>13:45</button>
-      <button>15:30</button>
-      <button class="ativo">16:30</button>
+        <div class="dias">
+          <button class="dia ativo" data-dia="Hoje">Hoje</button>
+          <button class="dia" data-dia="Amanhã">Amanhã</button>
+          <button class="dia" data-dia="Sexta">Sexta</button>
+        </div>
+
+        <div class="horarios" id="horarios"></div>
+
+        <button class="confirmar" id="confirmar">Confirmar horário</button>
+
+        <p class="mensagem" id="mensagem"></p>
+      </div>
     </div>
   </div>
+
+  <script>
+    const horariosPorDia = {
+      "Hoje": [
+        "05:00", "08:45", "09:00", "09:45",
+        "11:30", "12:00", "13:20", "13:45",
+        "15:30", "15:45", "16:05", "16:30",
+        "18:00", "21:00"
+      ],
+      "Amanhã": [
+        "08:00", "08:40", "09:20", "10:00",
+        "10:40", "11:20", "14:00", "14:40",
+        "15:20", "16:00", "16:40", "17:20"
+      ],
+      "Sexta": [
+        "09:00", "09:45", "10:30", "11:15",
+        "13:00", "13:45", "14:30", "15:15",
+        "16:00", "16:45", "17:30", "18:15"
+      ]
+    };
+
+    const dias = document.querySelectorAll(".dia");
+    const horariosContainer = document.getElementById("horarios");
+    const confirmar = document.getElementById("confirmar");
+    const mensagem = document.getElementById("mensagem");
+
+    let diaSelecionado = "Hoje";
+    let horarioSelecionado = "";
+
+    function renderizarHorarios() {
+      horariosContainer.innerHTML = "";
+      confirmar.style.display = "none";
+      mensagem.style.display = "none";
+      horarioSelecionado = "";
+
+      const horarios = horariosPorDia[diaSelecionado] || [];
+
+      horarios.forEach((hora) => {
+        const botao = document.createElement("button");
+        botao.className = "horario";
+        botao.textContent = hora;
+
+        botao.addEventListener("click", () => {
+          document.querySelectorAll(".horario").forEach((item) => {
+            item.classList.remove("selecionado");
+          });
+
+          botao.classList.add("selecionado");
+          horarioSelecionado = hora;
+
+          confirmar.textContent = "Confirmar " + hora;
+          confirmar.style.display = "block";
+          mensagem.style.display = "none";
+        });
+
+        horariosContainer.appendChild(botao);
+      });
+    }
+
+    dias.forEach((botao) => {
+      botao.addEventListener("click", () => {
+        dias.forEach((item) => item.classList.remove("ativo"));
+        botao.classList.add("ativo");
+
+        diaSelecionado = botao.dataset.dia;
+        renderizarHorarios();
+      });
+    });
+
+    confirmar.addEventListener("click", () => {
+      if (!horarioSelecionado) return;
+
+      mensagem.textContent = "Horário selecionado: " + diaSelecionado + " às " + horarioSelecionado;
+      mensagem.style.display = "block";
+
+      window.parent.postMessage(
+        {
+          name: "horario_confirmado",
+          data: {
+            data: diaSelecionado,
+            horario: horarioSelecionado
+          }
+        },
+        "*"
+      );
+    });
+
+    renderizarHorarios();
+  </script>
 </body>
 </html>
