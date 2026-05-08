@@ -6,7 +6,7 @@
   <title>Agenda</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700;800&display=swap');
 
     * {
       box-sizing: border-box;
@@ -25,11 +25,20 @@
       --selected-shadow: rgba(233, 222, 207, 0.18);
 
       /* FORMATO PADRÃO */
+      --agenda-max-width: 390px;
+      --agenda-padding: 8px;
+
       --day-width: 100%;
       --day-height: 32px;
       --day-radius: 10px;
+
+      --calendar-gap: 4px;
       --button-radius: 14px;
       --nav-radius: 10px;
+
+      --font-main-weight: 700;
+      --font-soft-weight: 600;
+      --font-number-weight: 800;
     }
 
     /* TEMA LUMA BEAUTY STUDIO */
@@ -37,27 +46,35 @@
       --bg: #efdedd;
       --agenda-bg: #efdedd;
 
-      --text: #121212;
+      --text: #111111;
       --muted: #5f4845;
 
-      /* preto dos botões principais */
-      --primary: #121212;
-
-      /* fundo das datas ativas */
+      --primary: #111111;
       --card: #c4918b;
 
       --border: transparent;
       --button-text: #f6f0eb;
-      --selected-shadow: rgba(18, 18, 18, 0.16);
+      --selected-shadow: rgba(18, 18, 18, 0.13);
 
-      /* DATAS EM CÍRCULO */
-      --day-width: 36px;
-      --day-height: 36px;
+      /* diminui o calendário para não cortar lateral */
+      --agenda-max-width: 330px;
+      --agenda-padding: 10px;
+
+      /* datas em círculo menor, mantendo número visível */
+      --day-width: 32px;
+      --day-height: 32px;
       --day-radius: 999px;
 
-      /* BOTÕES MAIS REDONDOS */
+      --calendar-gap: 6px;
+
+      /* botões arredondados */
       --button-radius: 999px;
       --nav-radius: 999px;
+
+      /* fonte menos pesada */
+      --font-main-weight: 700;
+      --font-soft-weight: 500;
+      --font-number-weight: 700;
     }
 
     body {
@@ -65,42 +82,46 @@
       background: var(--bg);
       font-family: 'Open Sans', Arial, sans-serif;
       color: var(--text);
+      overflow-x: hidden;
     }
 
     .agenda {
-      width: 100%;
-      max-width: 390px;
+      width: calc(100% - 20px);
+      max-width: var(--agenda-max-width);
       margin: 0 auto;
-      padding: 8px;
+      padding: var(--agenda-padding);
       background: var(--agenda-bg);
+      overflow: hidden;
     }
 
     .month-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       gap: 8px;
     }
 
     .month-title {
-      font-size: 15px;
-      font-weight: 900;
+      font-size: 19px;
+      font-weight: 700;
       color: var(--text);
       text-transform: capitalize;
       text-align: center;
       flex: 1;
+      letter-spacing: -0.3px;
     }
 
     .nav-btn {
       width: 34px;
       height: 34px;
+      min-width: 34px;
       border-radius: var(--nav-radius);
       border: none;
       background: var(--primary);
       color: var(--button-text);
       font-size: 20px;
-      font-weight: 900;
+      font-weight: 700;
       cursor: pointer;
       line-height: 1;
       display: flex;
@@ -111,22 +132,23 @@
     .weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-      margin-bottom: 5px;
+      gap: var(--calendar-gap);
+      margin-bottom: 7px;
     }
 
     .weekday {
       text-align: center;
-      font-size: 10px;
-      font-weight: 900;
+      font-size: 11px;
+      font-weight: 700;
       color: var(--muted);
     }
 
     .calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-      margin-bottom: 10px;
+      gap: var(--calendar-gap);
+      margin-bottom: 14px;
+      width: 100%;
     }
 
     .day {
@@ -137,10 +159,14 @@
       border: 1px solid var(--border);
       background: var(--card);
       color: var(--text);
-      font-size: 13px;
-      font-weight: 900;
+      font-size: 15px;
+      font-weight: var(--font-number-weight);
       cursor: pointer;
       padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
     }
 
     .day.empty {
@@ -160,10 +186,11 @@
     }
 
     .selected-label {
-      margin: 0 0 8px;
-      font-size: 14px;
+      margin: 0 0 12px;
+      font-size: 16px;
       color: var(--text);
-      font-weight: 900;
+      font-weight: 700;
+      letter-spacing: -0.2px;
     }
 
     .horarios {
@@ -173,15 +200,16 @@
     }
 
     .horario {
-      height: 48px;
+      height: 46px;
       border-radius: var(--button-radius);
       border: 1.5px solid var(--border);
       background: var(--card);
       color: var(--text);
-      font-size: 17px;
-      font-weight: 900;
+      font-size: 20px;
+      font-weight: 700;
       cursor: pointer;
       padding: 0;
+      letter-spacing: -0.4px;
     }
 
     .horario.selecionado {
@@ -199,28 +227,29 @@
       background: var(--primary);
       color: var(--button-text);
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 700;
       cursor: pointer;
       display: none;
     }
 
     .texto-trocar {
-      margin: 14px 0 8px;
+      margin: 18px 0 12px;
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.35;
+      font-size: 15px;
+      line-height: 1.45;
       text-align: center;
+      font-weight: 500;
     }
 
     .trocar-profissional {
       width: 100%;
-      height: 48px;
+      height: 50px;
       border: 1.5px solid var(--primary);
       border-radius: var(--button-radius);
       background: transparent;
       color: var(--text);
-      font-size: 15px;
-      font-weight: 900;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -234,7 +263,7 @@
       text-align: center;
       color: var(--text);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
       display: none;
     }
 
@@ -243,7 +272,24 @@
       color: var(--muted);
       margin: 0;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 500;
+    }
+
+    @media (max-width: 360px) {
+      body.cliente-luma {
+        --agenda-max-width: 310px;
+        --day-width: 30px;
+        --day-height: 30px;
+        --calendar-gap: 5px;
+      }
+
+      .month-title {
+        font-size: 18px;
+      }
+
+      .horario {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
