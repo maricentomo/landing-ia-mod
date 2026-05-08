@@ -6,15 +6,43 @@
   <title>Agenda</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800;900&display=swap');
+
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      /* Tema padrão / Faustino */
+      --bg: #111111;
+      --agenda-bg: #111111;
+      --text: #e9decf;
+      --muted: #cdbfad;
+      --primary: #355239;
+      --border: #5a2326;
+      --card: #0b0b0b;
+      --button-text: #e9decf;
+      --selected-shadow: rgba(233, 222, 207, 0.18);
+    }
+
+    /* Tema Luma Beauty Studio */
+    body.cliente-luma {
+      --bg: #c4918b;
+      --agenda-bg: #c4918b;
+      --text: #121212;
+      --muted: #5f4845;
+      --primary: #121212;
+      --border: #efdedd;
+      --card: #efdedd;
+      --button-text: #f6f0eb;
+      --selected-shadow: rgba(246, 240, 235, 0.35);
+    }
+
     body {
       margin: 0;
-      background: #111111;
-      font-family: Arial, sans-serif;
-      color: #e9decf;
+      background: var(--bg);
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: var(--text);
     }
 
     .agenda {
@@ -22,7 +50,7 @@
       max-width: 390px;
       margin: 0 auto;
       padding: 8px;
-      background: #111111;
+      background: var(--agenda-bg);
     }
 
     .month-header {
@@ -36,7 +64,7 @@
     .month-title {
       font-size: 15px;
       font-weight: 900;
-      color: #e9decf;
+      color: var(--text);
       text-transform: capitalize;
       text-align: center;
       flex: 1;
@@ -47,8 +75,8 @@
       height: 32px;
       border-radius: 10px;
       border: none;
-      background: #355239;
-      color: #e9decf;
+      background: var(--primary);
+      color: var(--button-text);
       font-size: 20px;
       font-weight: 900;
       cursor: pointer;
@@ -65,7 +93,7 @@
       text-align: center;
       font-size: 10px;
       font-weight: 900;
-      color: #cdbfad;
+      color: var(--muted);
     }
 
     .calendar {
@@ -78,9 +106,9 @@
     .day {
       height: 32px;
       border-radius: 10px;
-      border: 1px solid #5a2326;
-      background: #0b0b0b;
-      color: #e9decf;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
       font-size: 13px;
       font-weight: 900;
       cursor: pointer;
@@ -97,15 +125,16 @@
     }
 
     .day.selected {
-      background: #355239;
-      border-color: #355239;
-      box-shadow: 0 0 0 2px rgba(233, 222, 207, 0.18) inset;
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--button-text);
+      box-shadow: 0 0 0 2px var(--selected-shadow) inset;
     }
 
     .selected-label {
       margin: 0 0 8px;
       font-size: 14px;
-      color: #e9decf;
+      color: var(--text);
       font-weight: 900;
     }
 
@@ -118,9 +147,9 @@
     .horario {
       height: 48px;
       border-radius: 12px;
-      border: 1.5px solid #8d6a57;
-      background: #0b0b0b;
-      color: #f0e5d6;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--text);
       font-size: 17px;
       font-weight: 900;
       cursor: pointer;
@@ -128,9 +157,9 @@
     }
 
     .horario.selecionado {
-      background: #355239;
-      border-color: #355239;
-      color: #e9decf;
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--button-text);
     }
 
     .confirmar {
@@ -139,8 +168,8 @@
       height: 48px;
       border: none;
       border-radius: 14px;
-      background: #355239;
-      color: #e9decf;
+      background: var(--primary);
+      color: var(--button-text);
       font-size: 16px;
       font-weight: 900;
       cursor: pointer;
@@ -149,7 +178,7 @@
 
     .texto-trocar {
       margin: 14px 0 8px;
-      color: #cdbfad;
+      color: var(--muted);
       font-size: 13px;
       line-height: 1.35;
       text-align: center;
@@ -158,32 +187,35 @@
     .trocar-profissional {
       width: 100%;
       height: 44px;
-      border: 1.5px solid #5a2326;
+      border: 1.5px solid var(--primary);
       border-radius: 14px;
       background: transparent;
-      color: #e9decf;
+      color: var(--text);
       font-size: 15px;
       font-weight: 800;
       cursor: pointer;
     }
 
     .trocar-profissional:hover {
-      background: #5a2326;
+      background: var(--primary);
+      color: var(--button-text);
     }
 
     .mensagem {
       margin: 10px 0 0;
       text-align: center;
-      color: #e9decf;
+      color: var(--text);
       font-size: 13px;
+      font-weight: 700;
       display: none;
     }
 
     .aviso {
       grid-column: 1 / -1;
-      color: #cdbfad;
+      color: var(--muted);
       margin: 0;
       font-size: 13px;
+      font-weight: 700;
     }
   </style>
 </head>
@@ -238,6 +270,10 @@
       nome: params.get("nome") || "",
       telefone: params.get("telefone") || ""
     };
+
+    if (dadosTypebot.cliente.toLowerCase().trim() === "luma") {
+      document.body.classList.add("cliente-luma");
+    }
 
     const calendar = document.getElementById("calendar");
     const monthTitle = document.getElementById("monthTitle");
