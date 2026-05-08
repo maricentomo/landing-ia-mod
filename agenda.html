@@ -25,20 +25,11 @@
       --selected-shadow: rgba(233, 222, 207, 0.18);
 
       /* FORMATO PADRÃO */
-      --agenda-max-width: 390px;
-      --agenda-padding: 8px;
-
       --day-width: 100%;
       --day-height: 32px;
       --day-radius: 10px;
-
-      --calendar-gap: 4px;
       --button-radius: 14px;
       --nav-radius: 10px;
-
-      --font-main-weight: 700;
-      --font-soft-weight: 600;
-      --font-number-weight: 800;
     }
 
     /* TEMA LUMA BEAUTY STUDIO */
@@ -46,35 +37,31 @@
       --bg: #efdedd;
       --agenda-bg: #efdedd;
 
-      --text: #111111;
+      --text: #121212;
       --muted: #5f4845;
 
-      --primary: #111111;
+      --primary: #121212;
       --card: #c4918b;
 
       --border: transparent;
       --button-text: #f6f0eb;
-      --selected-shadow: rgba(18, 18, 18, 0.13);
+      --selected-shadow: rgba(18, 18, 18, 0.14);
 
-      /* diminui o calendário para não cortar lateral */
-      --agenda-max-width: 330px;
-      --agenda-padding: 10px;
-
-      /* datas em círculo menor, mantendo número visível */
-      --day-width: 32px;
-      --day-height: 32px;
+      /* DATAS EM CÍRCULO MENOR */
+      --day-width: 31px;
+      --day-height: 31px;
       --day-radius: 999px;
 
-      --calendar-gap: 6px;
-
-      /* botões arredondados */
+      /* BOTÕES REDONDOS */
       --button-radius: 999px;
       --nav-radius: 999px;
+    }
 
-      /* fonte menos pesada */
-      --font-main-weight: 700;
-      --font-soft-weight: 500;
-      --font-number-weight: 700;
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     body {
@@ -82,14 +69,13 @@
       background: var(--bg);
       font-family: 'Open Sans', Arial, sans-serif;
       color: var(--text);
-      overflow-x: hidden;
     }
 
     .agenda {
-      width: calc(100% - 20px);
-      max-width: var(--agenda-max-width);
+      width: 100%;
+      max-width: 342px;
       margin: 0 auto;
-      padding: var(--agenda-padding);
+      padding: 8px 6px 10px;
       background: var(--agenda-bg);
       overflow: hidden;
     }
@@ -98,24 +84,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       gap: 8px;
     }
 
     .month-title {
-      font-size: 19px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 800;
       color: var(--text);
       text-transform: capitalize;
       text-align: center;
       flex: 1;
-      letter-spacing: -0.3px;
+      line-height: 1.2;
     }
 
     .nav-btn {
-      width: 34px;
-      height: 34px;
-      min-width: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: var(--nav-radius);
       border: none;
       background: var(--primary);
@@ -127,28 +112,31 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: var(--calendar-gap);
-      margin-bottom: 7px;
+      gap: 2px;
+      margin-bottom: 5px;
     }
 
     .weekday {
       text-align: center;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       color: var(--muted);
+      line-height: 1.2;
     }
 
     .calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: var(--calendar-gap);
-      margin-bottom: 14px;
+      gap: 3px;
+      margin-bottom: 10px;
       width: 100%;
+      overflow: hidden;
     }
 
     .day {
@@ -159,14 +147,14 @@
       border: 1px solid var(--border);
       background: var(--card);
       color: var(--text);
-      font-size: 15px;
-      font-weight: var(--font-number-weight);
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
       padding: 0;
+      line-height: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 1;
     }
 
     .day.empty {
@@ -186,21 +174,22 @@
     }
 
     .selected-label {
-      margin: 0 0 12px;
-      font-size: 16px;
+      margin: 0 0 10px;
+      font-size: 14px;
       color: var(--text);
-      font-weight: 700;
-      letter-spacing: -0.2px;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .horarios {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
+      width: 100%;
     }
 
     .horario {
-      height: 46px;
+      height: 44px;
       border-radius: var(--button-radius);
       border: 1.5px solid var(--border);
       background: var(--card);
@@ -209,7 +198,7 @@
       font-weight: 700;
       cursor: pointer;
       padding: 0;
-      letter-spacing: -0.4px;
+      line-height: 1;
     }
 
     .horario.selecionado {
@@ -221,29 +210,30 @@
     .confirmar {
       width: 100%;
       margin-top: 10px;
-      height: 48px;
+      height: 46px;
       border: none;
       border-radius: var(--button-radius);
       background: var(--primary);
       color: var(--button-text);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       display: none;
     }
 
     .texto-trocar {
-      margin: 18px 0 12px;
+      margin: 16px auto 10px;
+      max-width: 285px;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.45;
-      text-align: center;
       font-weight: 500;
+      line-height: 1.35;
+      text-align: center;
     }
 
     .trocar-profissional {
       width: 100%;
-      height: 50px;
+      height: 46px;
       border: 1.5px solid var(--primary);
       border-radius: var(--button-radius);
       background: transparent;
@@ -272,24 +262,8 @@
       color: var(--muted);
       margin: 0;
       font-size: 13px;
-      font-weight: 500;
-    }
-
-    @media (max-width: 360px) {
-      body.cliente-luma {
-        --agenda-max-width: 310px;
-        --day-width: 30px;
-        --day-height: 30px;
-        --calendar-gap: 5px;
-      }
-
-      .month-title {
-        font-size: 18px;
-      }
-
-      .horario {
-        font-size: 18px;
-      }
+      font-weight: 600;
+      line-height: 1.35;
     }
   </style>
 </head>
