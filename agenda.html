@@ -13,7 +13,7 @@
     }
 
     :root {
-      /* Tema padrão / Faustino */
+      /* TEMA PADRÃO / FAUSTINO */
       --bg: #111111;
       --agenda-bg: #111111;
       --text: #e9decf;
@@ -23,19 +23,41 @@
       --card: #0b0b0b;
       --button-text: #e9decf;
       --selected-shadow: rgba(233, 222, 207, 0.18);
+
+      /* FORMATO PADRÃO */
+      --day-width: 100%;
+      --day-height: 32px;
+      --day-radius: 10px;
+      --button-radius: 14px;
+      --nav-radius: 10px;
     }
 
-    /* Tema Luma Beauty Studio */
+    /* TEMA LUMA BEAUTY STUDIO */
     body.cliente-luma {
-      --bg: #c4918b;
-      --agenda-bg: #c4918b;
+      --bg: #efdedd;
+      --agenda-bg: #efdedd;
+
       --text: #121212;
       --muted: #5f4845;
+
+      /* preto dos botões principais */
       --primary: #121212;
-      --border: #efdedd;
-      --card: #efdedd;
+
+      /* fundo das datas ativas */
+      --card: #c4918b;
+
+      --border: transparent;
       --button-text: #f6f0eb;
-      --selected-shadow: rgba(246, 240, 235, 0.35);
+      --selected-shadow: rgba(18, 18, 18, 0.16);
+
+      /* DATAS EM CÍRCULO */
+      --day-width: 36px;
+      --day-height: 36px;
+      --day-radius: 999px;
+
+      /* BOTÕES MAIS REDONDOS */
+      --button-radius: 999px;
+      --nav-radius: 999px;
     }
 
     body {
@@ -72,14 +94,18 @@
 
     .nav-btn {
       width: 34px;
-      height: 32px;
-      border-radius: 10px;
+      height: 34px;
+      border-radius: var(--nav-radius);
       border: none;
       background: var(--primary);
       color: var(--button-text);
       font-size: 20px;
       font-weight: 900;
       cursor: pointer;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .weekdays {
@@ -104,8 +130,10 @@
     }
 
     .day {
-      height: 32px;
-      border-radius: 10px;
+      width: var(--day-width);
+      height: var(--day-height);
+      justify-self: center;
+      border-radius: var(--day-radius);
       border: 1px solid var(--border);
       background: var(--card);
       color: var(--text);
@@ -146,7 +174,7 @@
 
     .horario {
       height: 48px;
-      border-radius: 12px;
+      border-radius: var(--button-radius);
       border: 1.5px solid var(--border);
       background: var(--card);
       color: var(--text);
@@ -167,7 +195,7 @@
       margin-top: 10px;
       height: 48px;
       border: none;
-      border-radius: 14px;
+      border-radius: var(--button-radius);
       background: var(--primary);
       color: var(--button-text);
       font-size: 16px;
@@ -186,13 +214,13 @@
 
     .trocar-profissional {
       width: 100%;
-      height: 44px;
+      height: 48px;
       border: 1.5px solid var(--primary);
-      border-radius: 14px;
+      border-radius: var(--button-radius);
       background: transparent;
       color: var(--text);
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
     }
 
