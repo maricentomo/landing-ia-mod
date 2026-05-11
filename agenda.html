@@ -57,6 +57,31 @@
       --nav-radius: 999px;
     }
 
+    /* TEMA PETSHOP */
+    body.cliente-petshop {
+      --bg: #fbe1c0;
+      --agenda-bg: #fbe1c0;
+
+      --text: #302018;
+      --muted: #7a5141;
+
+      --primary: #d97558;
+      --card: #f5b1b2;
+
+      --border: #c3cba4;
+      --button-text: #ffffff;
+      --selected-shadow: rgba(217, 117, 88, 0.22);
+
+      /* DATAS EM CÍRCULO MENOR */
+      --day-width: 31px;
+      --day-height: 31px;
+      --day-radius: 999px;
+
+      /* BOTÕES REDONDOS */
+      --button-radius: 999px;
+      --nav-radius: 999px;
+    }
+
     html,
     body {
       width: 100%;
@@ -294,7 +319,7 @@
 
     <button class="confirmar" id="confirmar">Confirmar horário</button>
 
-    <p class="texto-trocar">
+    <p class="texto-trocar" id="textoTrocar">
       Não encontrou o horário que queria?<br>
       Você pode escolher outra data no calendário ou trocar de profissional.
     </p>
@@ -316,11 +341,20 @@
       servico: params.get("servico") || "",
       barbeiro: params.get("barbeiro") || "",
       nome: params.get("nome") || "",
-      telefone: params.get("telefone") || ""
+      telefone: params.get("telefone") || "",
+      nome_pet: params.get("nome_pet") || ""
     };
 
-    if (dadosTypebot.cliente.toLowerCase().trim() === "luma") {
+    const clienteAtual = dadosTypebot.cliente.toLowerCase().trim();
+    const temaAtual = (params.get("tema") || "").toLowerCase().trim();
+    const trocar = (params.get("trocar") || "sim").toLowerCase().trim();
+
+    if (clienteAtual === "luma") {
       document.body.classList.add("cliente-luma");
+    }
+
+    if (temaAtual === "petshop" || clienteAtual.includes("pet")) {
+      document.body.classList.add("cliente-petshop");
     }
 
     const calendar = document.getElementById("calendar");
@@ -330,6 +364,15 @@
     const confirmar = document.getElementById("confirmar");
     const mensagem = document.getElementById("mensagem");
     const trocarProfissional = document.getElementById("trocarProfissional");
+    const textoTrocar = document.getElementById("textoTrocar");
+
+    if (trocar === "nao") {
+      trocarProfissional.style.display = "none";
+
+      if (textoTrocar) {
+        textoTrocar.innerHTML = "Não encontrou o horário que queria?<br>Você pode escolher outra data no calendário.";
+      }
+    }
 
     const prevMonth = document.getElementById("prevMonth");
     const nextMonth = document.getElementById("nextMonth");
@@ -429,7 +472,8 @@
             servico: dadosTypebot.servico,
             barbeiro: dadosTypebot.barbeiro,
             nome: dadosTypebot.nome,
-            telefone: dadosTypebot.telefone
+            telefone: dadosTypebot.telefone,
+            nome_pet: dadosTypebot.nome_pet
           })
         });
 
