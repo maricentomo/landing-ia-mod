@@ -57,29 +57,42 @@
       --nav-radius: 999px;
     }
 
-    /* TEMA PETSHOP */
-    body.cliente-petshop {
-      --bg: #c3c398;
-      --agenda-bg: #c3c398;
+  /* TEMA PETSHOP */
+body.cliente-petshop {
+  --bg: #c3c398;
+  --agenda-bg: #c3c398;
 
-      --text: #302018;
-      --muted: #7a5141;
+  --text: #121212;
+  --muted: #3f4a3c;
 
-      --primary: #d97558;
-      --card: #f5b1b2;
+  /* data selecionada */
+  --primary: #185854;
 
-      --button-text: #ffffff;
-      --selected-shadow: rgba(217, 117, 88, 0.22);
+  /* datas livres */
+  --card: #d97558;
 
-      /* DATAS EM CÍRCULO MENOR */
-      --day-width: 31px;
-      --day-height: 31px;
-      --day-radius: 999px;
+  /* sem contorno nas datas */
+  --border: transparent;
 
-      /* BOTÕES REDONDOS */
-      --button-radius: 999px;
-      --nav-radius: 999px;
-    }
+  --button-text: #fcf6ea;
+  --selected-shadow: rgba(24, 88, 84, 0.14);
+
+  /* DATAS EM CÍRCULO IGUAL LUMA */
+  --day-width: 31px;
+  --day-height: 31px;
+  --day-radius: 999px;
+
+  /* BOTÕES REDONDOS */
+  --button-radius: 999px;
+  --nav-radius: 999px;
+}
+
+/* DATAS INATIVAS / PREENCHIDAS */
+body.cliente-petshop .day.disabled {
+  background: #fcf6ea;
+  color: #121212;
+  opacity: 1;
+}
 
     html,
     body {
