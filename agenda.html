@@ -6,45 +6,78 @@
   <title>Agenda</title>
 
   <style>
-    :root {
-      --bg: #111111;
-      --panel: #111111;
-      --text: #e9decf;
-      --muted: #cdbfad;
-      --accent: #355239;
-      --border: #5a2326;
-      --button-bg: #0b0b0b;
-      --button-border: #8d6a57;
-    }
-
-    :root.tema-petshop {
-      --bg: #fbe1c0;
-      --panel: #fbe1c0;
-      --text: #302018;
-      --muted: #6f4a3c;
-      --accent: #c3cba4;
-      --border: #d97558;
-      --button-bg: #fff4df;
-      --button-border: #d97558;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;600;700;800&display=swap');
 
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      /* TEMA PADRÃO / FAUSTINO */
+      --bg: #111111;
+      --agenda-bg: #111111;
+      --text: #e9decf;
+      --muted: #cdbfad;
+      --primary: #355239;
+      --border: #5a2326;
+      --card: #0b0b0b;
+      --button-text: #e9decf;
+      --selected-shadow: rgba(233, 222, 207, 0.18);
+
+      /* FORMATO PADRÃO */
+      --day-width: 100%;
+      --day-height: 32px;
+      --day-radius: 10px;
+      --button-radius: 14px;
+      --nav-radius: 10px;
+    }
+
+    /* TEMA LUMA BEAUTY STUDIO */
+    body.cliente-luma {
+      --bg: #efdedd;
+      --agenda-bg: #efdedd;
+
+      --text: #121212;
+      --muted: #5f4845;
+
+      --primary: #121212;
+      --card: #c4918b;
+
+      --border: transparent;
+      --button-text: #f6f0eb;
+      --selected-shadow: rgba(18, 18, 18, 0.14);
+
+      /* DATAS EM CÍRCULO MENOR */
+      --day-width: 31px;
+      --day-height: 31px;
+      --day-radius: 999px;
+
+      /* BOTÕES REDONDOS */
+      --button-radius: 999px;
+      --nav-radius: 999px;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       margin: 0;
       background: var(--bg);
-      font-family: Arial, sans-serif;
+      font-family: 'Open Sans', Arial, sans-serif;
       color: var(--text);
     }
 
     .agenda {
       width: 100%;
-      max-width: 390px;
+      max-width: 342px;
       margin: 0 auto;
-      padding: 8px;
-      background: var(--panel);
+      padding: 8px 6px 10px;
+      background: var(--agenda-bg);
+      overflow: hidden;
     }
 
     .month-header {
@@ -57,56 +90,71 @@
 
     .month-title {
       font-size: 15px;
-      font-weight: 900;
+      font-weight: 800;
       color: var(--text);
       text-transform: capitalize;
       text-align: center;
       flex: 1;
+      line-height: 1.2;
     }
 
     .nav-btn {
-      width: 34px;
+      width: 32px;
       height: 32px;
-      border-radius: 10px;
+      border-radius: var(--nav-radius);
       border: none;
-      background: var(--accent);
-      color: var(--text);
+      background: var(--primary);
+      color: var(--button-text);
       font-size: 20px;
-      font-weight: 900;
+      font-weight: 700;
       cursor: pointer;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     .weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
+      gap: 2px;
       margin-bottom: 5px;
     }
 
     .weekday {
       text-align: center;
       font-size: 10px;
-      font-weight: 900;
+      font-weight: 700;
       color: var(--muted);
+      line-height: 1.2;
     }
 
     .calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
+      gap: 3px;
       margin-bottom: 10px;
+      width: 100%;
+      overflow: hidden;
     }
 
     .day {
-      height: 32px;
-      border-radius: 10px;
+      width: var(--day-width);
+      height: var(--day-height);
+      justify-self: center;
+      border-radius: var(--day-radius);
       border: 1px solid var(--border);
-      background: var(--button-bg);
+      background: var(--card);
       color: var(--text);
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 700;
       cursor: pointer;
       padding: 0;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .day.empty {
@@ -114,83 +162,90 @@
     }
 
     .day.disabled {
-      opacity: 0.25;
+      opacity: 0.22;
       cursor: not-allowed;
     }
 
     .day.selected {
-      background: var(--accent);
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.25) inset;
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--button-text);
+      box-shadow: 0 0 0 2px var(--selected-shadow) inset;
     }
 
     .selected-label {
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       font-size: 14px;
       color: var(--text);
-      font-weight: 900;
+      font-weight: 800;
+      line-height: 1.2;
     }
 
     .horarios {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
+      width: 100%;
     }
 
     .horario {
-      height: 48px;
-      border-radius: 12px;
-      border: 1.5px solid var(--button-border);
-      background: var(--button-bg);
+      height: 44px;
+      border-radius: var(--button-radius);
+      border: 1.5px solid var(--border);
+      background: var(--card);
       color: var(--text);
-      font-size: 17px;
-      font-weight: 900;
+      font-size: 20px;
+      font-weight: 700;
       cursor: pointer;
       padding: 0;
+      line-height: 1;
     }
 
     .horario.selecionado {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--text);
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--button-text);
     }
 
     .confirmar {
       width: 100%;
       margin-top: 10px;
-      height: 48px;
+      height: 46px;
       border: none;
-      border-radius: 14px;
-      background: var(--accent);
-      color: var(--text);
-      font-size: 16px;
-      font-weight: 900;
+      border-radius: var(--button-radius);
+      background: var(--primary);
+      color: var(--button-text);
+      font-size: 15px;
+      font-weight: 700;
       cursor: pointer;
       display: none;
     }
 
     .texto-trocar {
-      margin: 14px 0 8px;
+      margin: 16px auto 10px;
+      max-width: 285px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 15px;
+      font-weight: 500;
       line-height: 1.35;
       text-align: center;
     }
 
     .trocar-profissional {
       width: 100%;
-      height: 44px;
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
+      height: 46px;
+      border: 1.5px solid var(--primary);
+      border-radius: var(--button-radius);
       background: transparent;
       color: var(--text);
-      font-size: 15px;
-      font-weight: 800;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
     }
 
     .trocar-profissional:hover {
-      background: var(--border);
+      background: var(--primary);
+      color: var(--button-text);
     }
 
     .mensagem {
@@ -198,6 +253,7 @@
       text-align: center;
       color: var(--text);
       font-size: 13px;
+      font-weight: 600;
       display: none;
     }
 
@@ -206,6 +262,8 @@
       color: var(--muted);
       margin: 0;
       font-size: 13px;
+      font-weight: 600;
+      line-height: 1.35;
     }
   </style>
 </head>
@@ -236,7 +294,7 @@
 
     <button class="confirmar" id="confirmar">Confirmar horário</button>
 
-    <p class="texto-trocar" id="textoTrocar">
+    <p class="texto-trocar">
       Não encontrou o horário que queria?<br>
       Você pode escolher outra data no calendário ou trocar de profissional.
     </p>
@@ -253,21 +311,17 @@
 
     const params = new URLSearchParams(window.location.search);
 
-    const tema = params.get("tema") || "";
-    const trocar = params.get("trocar") || "sim";
-
-    if (tema === "petshop") {
-      document.documentElement.classList.add("tema-petshop");
-    }
-
     const dadosTypebot = {
       cliente: params.get("cliente") || "",
       servico: params.get("servico") || "",
       barbeiro: params.get("barbeiro") || "",
       nome: params.get("nome") || "",
-      telefone: params.get("telefone") || "",
-      nome_pet: params.get("nome_pet") || ""
+      telefone: params.get("telefone") || ""
     };
+
+    if (dadosTypebot.cliente.toLowerCase().trim() === "luma") {
+      document.body.classList.add("cliente-luma");
+    }
 
     const calendar = document.getElementById("calendar");
     const monthTitle = document.getElementById("monthTitle");
@@ -276,15 +330,9 @@
     const confirmar = document.getElementById("confirmar");
     const mensagem = document.getElementById("mensagem");
     const trocarProfissional = document.getElementById("trocarProfissional");
-    const textoTrocar = document.getElementById("textoTrocar");
 
     const prevMonth = document.getElementById("prevMonth");
     const nextMonth = document.getElementById("nextMonth");
-
-    if (trocar === "nao") {
-      trocarProfissional.style.display = "none";
-      textoTrocar.innerHTML = "Não encontrou o horário que queria?<br>Você pode escolher outra data no calendário.";
-    }
 
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
@@ -381,8 +429,7 @@
             servico: dadosTypebot.servico,
             barbeiro: dadosTypebot.barbeiro,
             nome: dadosTypebot.nome,
-            telefone: dadosTypebot.telefone,
-            nome_pet: dadosTypebot.nome_pet
+            telefone: dadosTypebot.telefone
           })
         });
 
