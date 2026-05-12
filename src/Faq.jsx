@@ -6,7 +6,7 @@ const FAQS = [
   { q: 'O cliente recebe confirmação pelo WhatsApp?', a: 'Sim. O sistema envia confirmação automática por WhatsApp e também pode enviar lembrete no dia do atendimento.' },
   { q: 'Posso usar para salão, clínica ou petshop?', a: 'Sim. A estrutura pode ser adaptada para diferentes tipos de negócios que trabalham com horário marcado.' },
   { q: 'Posso ter pagamento no agendamento?', a: 'Sim. O pagamento no agendamento está incluso no plano Completo.' },
-  { q: 'Posso adicionar mais profissionais depois?', a: 'Sim. Na hora de fechar o pedido ou em uma atualização futura, é possível adicionar recursos extras conforme a necessidade do seu negócio.' },
+  { q: 'Posso adicionar mais profissionais?', a: 'Sim. Cada profissional extra custa R$ 97 de implantação + R$ 29/mês. Se precisar de mais categorias ou serviços além do limite do seu plano, o pacote extra é R$ 97 por pacote, sem mensalidade adicional.' },
   { q: 'O que acontece depois do primeiro ano?', a: 'Você pode renovar o sistema por um valor menor. A renovação cobre a manutenção técnica, hospedagem, funcionamento das integrações e suporte.' },
 ];
 
