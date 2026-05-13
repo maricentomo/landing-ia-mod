@@ -89,65 +89,63 @@ const ProblemSection = () => {
           </div>
         </div>
 
-        {/* RIGHT — chat chaos stage (hidden on mobile) */}
-        {!isMobile && (
-          <div style={{
-            position: 'relative',
-            height: '640px',
-            width: '100%'
+        {/* RIGHT — chat chaos stage */}
+        <div style={{
+          position: 'relative',
+          height: isMobile ? '380px' : '640px',
+          width: '100%'
+        }}>
+          <img src="assets/duvida.png" alt=""
+          style={{
+            position: 'absolute',
+            top: '38%', left: '45%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 1,
+            animation: 'wiggle 1.4s ease-in-out infinite',
+            objectFit: 'cover',
+            width: isMobile ? '220px' : '400px',
+            margin: isMobile ? '-120px 0 0 -80px' : '-230px 0px 0px -150px'
+          }} />
+
+          {messages.map((m, i) =>
+          <div key={i} className="reveal"
+          style={{
+            position: 'absolute',
+            top: m.top, left: m.left, right: m.right,
+            transform: `rotate(${m.rot}deg)`,
+            transition: `opacity 0.6s ${i * 0.08}s, transform 0.6s ${i * 0.08}s`,
+            zIndex: 2
           }}>
-            <img src="assets/duvida.png" alt=""
-            style={{
-              position: 'absolute',
-              top: '38%', left: '45%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 1,
-              animation: 'wiggle 1.4s ease-in-out infinite',
-              objectFit: 'cover',
-              width: '400px',
-              margin: '-230px 0px 0px -150px'
-            }} />
-
-            {messages.map((m, i) =>
-            <div key={i} className="reveal"
-            style={{
-              position: 'absolute',
-              top: m.top, left: m.left, right: m.right,
-              transform: `rotate(${m.rot}deg)`,
-              transition: `opacity 0.6s ${i * 0.08}s, transform 0.6s ${i * 0.08}s`,
-              zIndex: 2
+              <div style={{
+              background: m.side === 'left' ? '#fff' : '#DCF8C6',
+              padding: '8px 12px',
+              borderRadius: m.side === 'left' ? '4px 14px 14px 14px' : '14px 4px 14px 14px',
+              boxShadow: '0 4px 14px rgba(0,0,0,0.12)',
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: isMobile ? '11px' : '13px', color: '#0B1411',
+              maxWidth: isMobile ? '160px' : '240px'
             }}>
+                {m.text}
                 <div style={{
-                background: m.side === 'left' ? '#fff' : '#DCF8C6',
-                padding: '8px 12px',
-                borderRadius: m.side === 'left' ? '4px 14px 14px 14px' : '14px 4px 14px 14px',
-                boxShadow: '0 4px 14px rgba(0,0,0,0.12)',
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '13px', color: '#0B1411',
-                maxWidth: '240px'
-              }}>
-                  {m.text}
-                  <div style={{
-                  fontSize: '9px', color: '#888',
-                  textAlign: 'right', marginTop: '2px'
-                }}>{m.time}</div>
-                </div>
+                fontSize: '9px', color: '#888',
+                textAlign: 'right', marginTop: '2px'
+              }}>{m.time}</div>
               </div>
-            )}
+            </div>
+          )}
 
-            <div style={{
-              position: 'absolute',
-              top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontSize: '200px', fontWeight: 800,
-              color: 'var(--orange)',
-              opacity: 0.35,
-              pointerEvents: 'none',
-              zIndex: 3
-            }}>×</div>
-          </div>
-        )}
+          <div style={{
+            position: 'absolute',
+            top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            fontFamily: "'Bricolage Grotesque', sans-serif",
+            fontSize: isMobile ? '120px' : '200px', fontWeight: 800,
+            color: 'var(--orange)',
+            opacity: 0.35,
+            pointerEvents: 'none',
+            zIndex: 3
+          }}>×</div>
+        </div>
       </div>
     </section>);
 
