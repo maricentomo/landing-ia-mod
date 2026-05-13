@@ -245,6 +245,22 @@ const CheckoutModal = ({ plan, billing, onClose, onConfirm, loading }) => {
           </div>
           {/* Form */}
           <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', gap: '16px', overflowY: 'auto', flex: 1 }}>
+            {billing === 'mensal' && (
+              <div style={{
+                background: 'rgba(253,92,2,0.08)',
+                border: '1.5px solid var(--orange)',
+                borderRadius: '12px',
+                padding: '14px 16px',
+              }}>
+                <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '12px', color: 'var(--orange)', marginBottom: '6px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  Pagamento em 2 etapas
+                </div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', lineHeight: 1.55, color: 'rgba(0,0,0,0.72)' }}>
+                  Primeiro será cobrada a taxa de implementação <strong>({plan.mensal.implTo})</strong>. Após a confirmação, você receberá o link para ativar a assinatura mensal.
+                </div>
+              </div>
+            )}
+
             {field('Nome completo', 'name', 'Seu nome')}
             {field('E-mail', 'email', 'seuemail@exemplo.com', 'email')}
             {field('WhatsApp', 'phone', '(11) 99999-9999', 'tel')}

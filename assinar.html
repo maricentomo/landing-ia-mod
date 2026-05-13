@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ativar assinatura · IA MOD</title>
+
+<style>
+  @font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('fonts/BricolageGrotesque_48pt-ExtraBold.ttf') format('truetype');
+    font-weight: 800; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('fonts/BricolageGrotesque_48pt-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --orange: #FD5C02;
+    --black: #000000;
+    --offwhite: #F2EEE5;
+    --dark-2: #1A1A1A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+  @keyframes pop-in {
+    0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes check-draw {
+    0% { stroke-dashoffset: 60; }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes circle-draw {
+    0% { stroke-dashoffset: 200; }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(253,92,2,0.4); }
+    50% { box-shadow: 0 0 0 16px rgba(253,92,2,0); }
+  }
+
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 32px;
+    border-bottom: 1px solid rgba(242,238,229,0.08);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 20px; letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .nav-logo img { width: 28px; height: 28px; }
+
+  .main {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 24px;
+  }
+
+  .card {
+    background: var(--dark-2);
+    border: 1px solid rgba(242,238,229,0.08);
+    border-radius: 32px;
+    padding: 56px 48px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    animation: pop-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .check-wrap {
+    width: 88px; height: 88px;
+    margin: 0 auto 32px;
+    position: relative;
+  }
+  .check-wrap svg { width: 100%; height: 100%; }
+  .circle {
+    fill: none; stroke: var(--orange); stroke-width: 3;
+    stroke-dasharray: 200; stroke-dashoffset: 200;
+    animation: circle-draw 0.6s ease forwards 0.2s;
+  }
+  .check {
+    fill: none; stroke: var(--orange); stroke-width: 3.5;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 60; stroke-dashoffset: 60;
+    animation: check-draw 0.4s ease forwards 0.7s;
+  }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700; font-size: 12px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--orange);
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+    animation: fade-up 0.5s ease forwards 0.4s; opacity: 0;
+  }
+  .eyebrow::before {
+    content: ''; display: inline-block;
+    width: 24px; height: 1px; background: var(--orange);
+  }
+
+  .title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--offwhite);
+    margin-bottom: 20px;
+    animation: fade-up 0.5s ease forwards 0.5s; opacity: 0;
+  }
+  .title span { color: var(--orange); }
+
+  .subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: rgba(242,238,229,0.65);
+    margin-bottom: 40px;
+    animation: fade-up 0.5s ease forwards 0.6s; opacity: 0;
+  }
+
+  .info-box {
+    background: rgba(253,92,2,0.08);
+    border: 1px solid rgba(253,92,2,0.25);
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-align: left;
+    margin-bottom: 36px;
+    animation: fade-up 0.5s ease forwards 0.7s; opacity: 0;
+  }
+  .info-box-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 13px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 8px;
+  }
+  .info-box p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; line-height: 1.6;
+    color: rgba(242,238,229,0.7);
+  }
+
+  .actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    animation: fade-up 0.5s ease forwards 0.8s; opacity: 0;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 15px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    border: none; cursor: pointer; border-radius: 999px;
+    padding: 16px 32px;
+    transition: all 200ms ease-out;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--orange); color: #000;
+    animation: pulse 2s ease-in-out infinite 1.2s;
+  }
+  .btn-primary:hover {
+    background: #D94E02;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(242,238,229,0.15);
+  }
+  .btn-outline {
+    background: transparent; color: var(--offwhite);
+    border: 2px solid rgba(242,238,229,0.2);
+  }
+  .btn-outline:hover {
+    border-color: var(--orange); color: var(--orange);
+    transform: translate(-2px, -2px);
+  }
+
+  .deco {
+    position: fixed; pointer-events: none; z-index: 0; opacity: 0.05;
+  }
+  .deco-1 { bottom: -120px; right: -120px; width: 400px; height: 400px; animation: spin-slow 60s linear infinite; }
+  .deco-2 { top: -80px; left: -80px; width: 300px; height: 300px; animation: spin-slow 40s linear infinite reverse; }
+
+  .footer {
+    padding: 24px 32px; text-align: center;
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: rgba(242,238,229,0.3);
+    border-top: 1px solid rgba(242,238,229,0.06);
+  }
+
+  @media (max-width: 600px) {
+    .card { padding: 40px 24px; border-radius: 24px; }
+    .nav { padding: 20px; }
+    .actions { flex-direction: column; }
+    .btn { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<img src="assets/asterisk-orange.png" class="deco deco-1" alt="" />
+<img src="assets/asterisk-outline-orange.png" class="deco deco-2" alt="" />
+
+<nav class="nav">
+  <div class="nav-logo">
+    <img src="assets/asterisk-orange.png" alt="IA MOD" />
+    IA MOD
+  </div>
+  <a href="/" class="btn btn-outline" style="padding:10px 20px; font-size:13px;">← Voltar ao site</a>
+</nav>
+
+<main class="main">
+  <div class="card">
+
+    <div class="check-wrap">
+      <svg viewBox="0 0 88 88">
+        <circle class="circle" cx="44" cy="44" r="40" transform="rotate(-90 44 44)" />
+        <polyline class="check" points="26,44 38,56 62,32" />
+      </svg>
+    </div>
+
+    <div class="eyebrow">Implementação paga!</div>
+
+    <h1 class="title">
+      Agora ative<br>sua <span>assinatura</span>
+    </h1>
+
+    <p class="subtitle">
+      A taxa de implementação foi confirmada. O próximo passo é ativar sua assinatura mensal para o plano começar a funcionar.
+    </p>
+
+    <div class="info-box">
+      <div class="info-box-title">O que acontece agora?</div>
+      <p>Clique no botão abaixo para ser redirecionado ao Mercado Pago e ativar sua assinatura. Após a confirmação, nossa equipe entrará em contato em até 1 dia útil para iniciar a configuração da sua agenda.</p>
+    </div>
+
+    <div class="actions">
+      <a id="btn-assinar" href="#" class="btn btn-primary">
+        Ativar minha assinatura →
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  © 2025 IA MOD · Todos os direitos reservados
+</footer>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const sub = params.get('sub');
+  const btn = document.getElementById('btn-assinar');
+
+  if (sub) {
+    btn.href = decodeURIComponent(sub);
+  } else {
+    btn.href = '/';
+    btn.textContent = 'Voltar ao site';
+  }
+</script>
+
+</body>
+</html>
