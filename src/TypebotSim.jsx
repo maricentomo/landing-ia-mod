@@ -138,7 +138,7 @@ const PhoneMockup = ({ isMobile }) => {
             preload="auto"
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           >
-            <source src="uploads/video_demo.mp4" type="video/mp4" />
+            <source src="uploads/chat.mp4" type="video/mp4" />
           </video>
         </div>
       </div>
