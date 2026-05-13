@@ -208,15 +208,15 @@ const StatsCharts = () => {
         <h2 style={{
           fontFamily: "'Bricolage Grotesque', sans-serif",
           fontWeight: 800,
-          fontSize: 'clamp(28px, 4vw, 56px)',
+          fontSize: 'clamp(28px, 4vw, 48px)',
           lineHeight: 1.0,
           letterSpacing: '-0.03em',
           textTransform: 'uppercase',
           color: 'var(--offwhite)',
-          maxWidth: '780px',
+          maxWidth: '580px',
           marginBottom: isMobile ? '40px' : '56px',
         }}>
-          Responder rápido é o que separa o cliente interessado do{' '}
+          Cliente esperando é{' '}
           <span style={{ color: 'var(--orange)' }}>cliente perdido.</span>
         </h2>
 
