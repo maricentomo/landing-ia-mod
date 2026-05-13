@@ -1,13 +1,14 @@
 // FAQ — animated accordion
 
 const FAQS = [
-  { q: 'Preciso instalar algum aplicativo?', a: 'Não. O cliente acessa a agenda por um link. Esse link pode ficar no Instagram, WhatsApp, site, Google ou QR Code.' },
+  { q: 'Preciso instalar algum aplicativo?', a: 'Não. A configuração é toda por nossa conta. Você apenas precisa configurar a agenda no Google Agenda e conectar o seu WhatsApp. Fique tranquilo, não precisamos de acesso a sua conta e vamos enviar todas as instruções para isso. Você faz isso em poucos cliques.' },
   { q: 'A agenda funciona para mais de um profissional?', a: 'Sim. No plano Equipe e no plano Completo, é possível trabalhar com até 5 profissionais e agenda separada para cada um.' },
   { q: 'O cliente recebe confirmação pelo WhatsApp?', a: 'Sim. O sistema envia confirmação automática por WhatsApp e também pode enviar lembrete no dia do atendimento.' },
   { q: 'Posso usar para salão, clínica ou petshop?', a: 'Sim. A estrutura pode ser adaptada para diferentes tipos de negócios que trabalham com horário marcado.' },
   { q: 'Posso ter pagamento no agendamento?', a: 'Sim. O pagamento no agendamento está incluso no plano Completo.' },
   { q: 'Posso adicionar mais profissionais?', a: 'Sim. Cada profissional extra custa R$ 97 de implantação + R$ 29/mês. Se precisar de mais categorias ou serviços além do limite do seu plano, o pacote extra é R$ 97 por pacote, sem mensalidade adicional.' },
-  { q: 'O que acontece depois do primeiro ano?', a: 'Você pode renovar o sistema por um valor menor. A renovação cobre a manutenção técnica, hospedagem, funcionamento das integrações e suporte.' },
+  { q: 'O que está incluso na personalização?', a: 'A personalização do seu plano cobre identidade visual: logo, cores e imagens do seu negócio. Alterações no fluxo de atendimento — como novas etapas, integrações ou funcionalidades fora do escopo do plano contratado — não estão incluídas e precisam ser avaliadas separadamente, podendo gerar um novo orçamento.' },
+
 ];
 
 const Faq = () => {

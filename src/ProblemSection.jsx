@@ -46,7 +46,7 @@ const ProblemSection = () => {
       }}>
         {/* LEFT — copy */}
         <div className="reveal">
-          <Eyebrow color="#000">O problema</Eyebrow>
+          <Eyebrow color="#000">O prejuízo invisível</Eyebrow>
           <h2 style={{
             fontFamily: "'Bricolage Grotesque', sans-serif",
             fontWeight: 800,
@@ -57,7 +57,7 @@ const ProblemSection = () => {
             color: '#000',
             margin: '24px 0 32px'
           }}>
-            Seu WhatsApp não precisa ser a <span style={{ color: 'var(--orange)' }}>recepção</span> da sua empresa.
+            Quanto <span style={{ color: 'var(--orange)' }}>custa</span> o atendimento <span style={{ color: 'var(--orange)' }}>manual?</span>
           </h2>
 
           <div style={{
@@ -66,16 +66,16 @@ const ProblemSection = () => {
             color: 'rgba(0,0,0,0.78)',
             display: 'flex', flexDirection: 'column', gap: '18px'
           }}>
-            <p>Hoje, muita empresa ainda agenda no improviso. O cliente chama no WhatsApp. Alguém demora para responder. O horário some no meio da conversa.</p>
-            <p>O profissional não vê o aviso. O cliente esquece. E a agenda vira uma mistura de print, caderno e memória.</p>
-            <p style={{ fontWeight: 700, color: '#000' }}>O problema não é só atendimento — é falta de um sistema simples para organizar o caminho até o atendimento.</p>
+            <p>Cada mensagem esquecida, cada horário sem confirmação e cada cliente que some antes de marcar entra na conta. </p>
+            <p>A agenda parece só uma parte do atendimento, mas na prática, ela decide quanto tempo você perde, quantos horários ficam vazios e quantos clientes deixam de fechar. </p>
+            <p style={{ fontWeight: 700, color: '#000' }}>Organização também é faturamento.</p>
           </div>
 
           <div style={{
             marginTop: '40px',
             display: 'flex', flexWrap: 'wrap', gap: '12px'
           }}>
-            {['Mensagem perdida', 'Print de horário', 'Caderno furado', 'Cliente esquece', 'Agenda dupla'].map((t, i) =>
+            {['Cliente esperando', 'Horário vazio', 'Resposta atrasada', 'Confirmação manual', 'Dinheiro escapando'].map((t, i) =>
             <span key={i} style={{
               display: 'inline-flex', alignItems: 'center', gap: '8px',
               background: '#000', color: 'var(--offwhite)',

@@ -73,7 +73,7 @@ const Hero = () => {
           }}>
             <span style={{ display: 'block' }}>Pare de perder</span>
             <span style={{ display: 'block' }}>
-              horário <span style={{ color: 'var(--orange)', fontStyle: 'italic' }}>no</span>
+              clientes <span style={{ color: 'var(--orange)', fontStyle: 'italic' }}>no</span>
             </span>
             <span style={{ display: 'inline-flex', alignItems: 'baseline', gap: '14px', flexWrap: 'wrap' }}>
               <span style={{

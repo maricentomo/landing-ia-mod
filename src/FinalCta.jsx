@@ -18,7 +18,7 @@ const FinalCta = () => {
 
         <h2 className="reveal" style={{
           fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800,
-          fontSize: 'clamp(40px, 7.5vw, 128px)', lineHeight: 0.88,
+          fontSize: 'clamp(32px, 5.5vw, 88px)', lineHeight: 0.88,
           letterSpacing: '-0.04em', textTransform: 'uppercase',
           color: '#000', maxWidth: '1100px', margin: '0 auto 24px'
         }}>

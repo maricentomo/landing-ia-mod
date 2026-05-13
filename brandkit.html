@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Kit Completo · IA MOD</title>
+<link rel="icon" type="image/png" href="assets/asterisk-orange.png">
+
+<style>
+  @font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('fonts/BricolageGrotesque_48pt-ExtraBold.ttf') format('truetype');
+    font-weight: 800; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('fonts/BricolageGrotesque_48pt-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --orange: #FD5C02;
+    --orange-hover: #D94E02;
+    --black: #000000;
+    --offwhite: #F2EEE5;
+    --offwhite-2: #E8E2D5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 767px) { .container { padding: 0 20px; } }
+
+  @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up { animation: fade-up 0.7s ease-out both; }
+  .fade-up-2 { animation: fade-up 0.7s 0.15s ease-out both; }
+  .fade-up-3 { animation: fade-up 0.7s 0.3s ease-out both; }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+  window.API_URL = 'https://iamod-api-pagamentos.k474gt.easypanel.host';
+</script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+const DELIVERABLES = [
+  { icon: '◈', label: 'Logotipo',         desc: 'Principal, versões horizontais, símbolo e variações de cor' },
+  { icon: '◉', label: 'Paleta de cores',  desc: 'Primárias, secundárias e neutras com códigos HEX, RGB e CMYK' },
+  { icon: 'Aa', label: 'Fontes',           desc: 'Tipografia primária e secundária com guia de uso' },
+  { icon: '⊡', label: 'Pack Canva',       desc: 'Templates editáveis para feed, stories e destaques' },
+  { icon: '✦', label: 'Mascote',          desc: 'Personagem da marca em poses e expressões variadas' },
+  { icon: '⬚', label: 'Aplicações',       desc: 'Mockups em cartão, camiseta, embalagem e fachada' },
+  { icon: '⊞', label: 'Artes para gráfica', desc: 'Arquivos prontos em CMYK para impressão profissional' },
+];
+
+const TermsModal = ({ onClose }) => {
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, []);
+
+  return (
+    <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+      <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: '20px', width: '100%', maxWidth: '640px', maxHeight: '85vh', display: 'flex', flexDirection: 'column', border: '2px solid #000', boxShadow: '8px 8px 0 var(--orange)' }}>
+        <div style={{ padding: '24px 28px', borderBottom: '1px solid rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
+          <div>
+            <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '18px', color: '#000' }}>Termos de Contratação</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: 'rgba(0,0,0,0.45)', marginTop: '2px' }}>Brand Kit Completo · IA MOD</div>
+          </div>
+          <button onClick={onClose} style={{ background: 'none', border: '2px solid #000', borderRadius: '50%', width: 36, height: 36, cursor: 'pointer', fontWeight: 800, fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</button>
+        </div>
+        <div style={{ padding: '24px 28px', overflowY: 'auto', flex: 1, fontFamily: "'DM Sans', sans-serif", fontSize: '14px', lineHeight: 1.7, color: 'rgba(0,0,0,0.75)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <p>Ao contratar o Brand Kit Completo da Ia Mod, o CONTRATANTE declara que leu, compreendeu e concorda com os termos abaixo.</p>
+          <div>
+            <strong style={{ color: '#000', display: 'block', marginBottom: '4px' }}>1. Objeto</strong>
+            <p>Criação de identidade visual completa incluindo logotipo, paleta de cores, tipografia, pack Canva, mascote, aplicações e artes para gráfica, conforme descrito na página de contratação.</p>
+          </div>
+          <div>
+            <strong style={{ color: '#000', display: 'block', marginBottom: '4px' }}>2. Prazo de entrega</strong>
+            <p>Até 15 dias úteis após confirmação do pagamento e envio do briefing completo pelo cliente. O prazo é prorrogado se o cliente atrasar o envio de informações necessárias.</p>
+          </div>
+          <div>
+            <strong style={{ color: '#000', display: 'block', marginBottom: '4px' }}>3. Revisões</strong>
+            <p>Inclui até 2 rodadas de revisão por entregável. Alterações além desse limite ou mudanças de briefing após aprovação inicial são cobradas à parte.</p>
+          </div>
+          <div>
+            <strong style={{ color: '#000', display: 'block', marginBottom: '4px' }}>4. Pagamento</strong>
+            <p>Valor total: R$ 700,00, pago integralmente no ato da contratação. O projeto só é iniciado após a confirmação do pagamento.</p>
+          </div>
+          <div>
+            <strong style={{ color: '#000', display: 'block', marginBottom: '4px' }}>5. Direito de arrependimento</strong>
+            <p>O CONTRATANTE pode cancelar em até 7 dias da contratação, conforme o Código de Defesa do Consumidor. Após esse prazo, e iniciada a execução, o valor não é reembolsável.</p>
+          </div>
+          <div>
+            <strong style={{ color: '#000', display: 'block', marginBottom: '4px' }}>6. Propriedade intelectual</strong>
+            <p>Após quitação total, todos os arquivos finais são transferidos ao CONTRATANTE. A Ia Mod mantém o direito de usar o projeto em portfólio, salvo solicitação de confidencialidade por escrito.</p>
+          </div>
+          <div>
+            <strong style={{ color: '#000', display: 'block', marginBottom: '4px' }}>7. Limitação de responsabilidade</strong>
+            <p>A Ia Mod não garante resultado comercial, aumento de faturamento ou aprovação por terceiros (franqueadoras, órgãos reguladores etc.). Oferece criação e entrega dos materiais contratados.</p>
+          </div>
+        </div>
+        <div style={{ padding: '16px 28px', borderTop: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }}>
+          <button onClick={onClose} style={{ width: '100%', padding: '12px', background: '#000', color: 'var(--offwhite)', border: 'none', borderRadius: '12px', fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '14px', cursor: 'pointer', letterSpacing: '0.04em' }}>
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const CheckoutForm = () => {
+  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const [agreed, setAgreed] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const validate = () => {
+    const e = {};
+    if (!form.name.trim()) e.name = 'Informe seu nome';
+    if (!form.email.includes('@')) e.email = 'E-mail inválido';
+    if (form.phone.replace(/\D/g, '').length < 10) e.phone = 'WhatsApp inválido';
+    if (!agreed) e.agreed = 'Aceite os termos para continuar';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleSubmit = async () => {
+    if (!validate()) return;
+    setLoading(true);
+    try {
+      const res = await fetch(`${window.API_URL}/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ planId: 'brandkit', billing: 'avista', customer: form }),
+      });
+      const json = await res.json();
+      if (json.init_point) {
+        window.location.href = json.init_point;
+      } else {
+        alert('Erro ao iniciar pagamento. Tente novamente.');
+      }
+    } catch {
+      alert('Não foi possível conectar com o servidor de pagamento.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const field = (label, key, placeholder, type = 'text') => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+      <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11px', fontWeight: 700, color: 'rgba(242,238,229,0.6)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{label}</label>
+      <input
+        type={type}
+        value={form[key]}
+        placeholder={placeholder}
+        onChange={e => { setForm(f => ({ ...f, [key]: e.target.value })); setErrors(er => ({ ...er, [key]: null })); }}
+        style={{
+          padding: '14px 16px', borderRadius: '12px',
+          fontFamily: "'DM Sans', sans-serif", fontSize: '15px',
+          border: `2px solid ${errors[key] ? 'var(--orange)' : 'rgba(242,238,229,0.15)'}`,
+          outline: 'none', color: 'var(--offwhite)',
+          background: 'rgba(255,255,255,0.06)',
+        }}
+      />
+      {errors[key] && <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: 'var(--orange)' }}>{errors[key]}</span>}
+    </div>
+  );
+
+  return (
+    <>
+      {showTerms && <TermsModal onClose={() => setShowTerms(false)} />}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        {field('Nome completo', 'name', 'Seu nome')}
+        {field('E-mail', 'email', 'seuemail@exemplo.com', 'email')}
+        {field('WhatsApp', 'phone', '(11) 99999-9999', 'tel')}
+
+        <div style={{ marginTop: '4px' }}>
+          <label style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', cursor: 'pointer' }}>
+            <div
+              onClick={() => { setAgreed(a => !a); setErrors(e => ({ ...e, agreed: null })); }}
+              style={{
+                width: 20, height: 20, borderRadius: '5px', flexShrink: 0, marginTop: '2px',
+                border: `2px solid ${errors.agreed ? 'var(--orange)' : (agreed ? 'var(--orange)' : 'rgba(242,238,229,0.3)')}`,
+                background: agreed ? 'var(--orange)' : 'transparent',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                transition: 'all 150ms', cursor: 'pointer',
+              }}
+            >
+              {agreed && <span style={{ color: '#000', fontSize: '12px', fontWeight: 800, lineHeight: 1 }}>✓</span>}
+            </div>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', lineHeight: 1.55, color: 'rgba(242,238,229,0.65)' }}>
+              Li e concordo com os{' '}
+              <button
+                onClick={e => { e.preventDefault(); setShowTerms(true); }}
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: '13px', fontWeight: 700, color: 'var(--offwhite)', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+              >
+                Termos e Condições
+              </button>
+            </span>
+          </label>
+          {errors.agreed && <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: 'var(--orange)', marginTop: '6px', marginLeft: '32px' }}>{errors.agreed}</div>}
+        </div>
+
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          style={{
+            marginTop: '8px',
+            width: '100%', padding: '16px 24px', borderRadius: '999px',
+            border: '2px solid var(--orange)', cursor: loading ? 'wait' : 'pointer',
+            fontFamily: "'Bricolage Grotesque', sans-serif",
+            fontWeight: 800, fontSize: '15px', letterSpacing: '0.04em', textTransform: 'uppercase',
+            background: 'var(--orange)', color: '#000',
+            opacity: loading ? 0.7 : 1, transition: 'all 200ms',
+          }}
+          onMouseEnter={e => { if (!loading) { e.currentTarget.style.background = 'var(--orange-hover)'; e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = '6px 6px 0 rgba(253,92,2,0.3)'; } }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'var(--orange)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
+        >
+          {loading ? 'Aguarde...' : 'Garantir meu Brand Kit · R$ 700 →'}
+        </button>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11px', color: 'rgba(242,238,229,0.35)', textAlign: 'center' }}>
+          Pagamento seguro. Você será redirecionado ao ambiente de pagamento.
+        </p>
+      </div>
+    </>
+  );
+};
+
+const App = () => {
+  const [mobile, setMobile] = useState(window.innerWidth < 768);
+  useEffect(() => {
+    const fn = () => setMobile(window.innerWidth < 768);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+
+  return (
+    <div style={{ minHeight: '100vh' }}>
+
+      {/* NAV */}
+      <nav style={{ padding: '20px 0', borderBottom: '1px solid rgba(242,238,229,0.08)' }}>
+        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <a href="/" style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '22px', letterSpacing: '-0.02em' }}>
+            ia<span style={{ color: 'var(--orange)' }}>*</span>MOD
+          </a>
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(242,238,229,0.45)' }}>
+            Brand Kit Completo
+          </div>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section style={{ padding: mobile ? '60px 0 80px' : '100px 0 120px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '-200px', right: '-200px', width: '600px', height: '600px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(253,92,2,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: mobile ? '60px' : '80px', alignItems: 'center' }}>
+
+            {/* LEFT — copy */}
+            <div>
+              <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(253,92,2,0.12)', border: '1px solid rgba(253,92,2,0.3)', borderRadius: '999px', padding: '6px 14px', marginBottom: '28px' }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--orange)', display: 'inline-block' }} />
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', fontWeight: 600, color: 'var(--orange)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Identidade visual completa</span>
+              </div>
+
+              <h1 className="fade-up-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: 'clamp(40px, 6vw, 80px)', lineHeight: 0.92, letterSpacing: '-0.04em', textTransform: 'uppercase', color: 'var(--offwhite)', marginBottom: '28px' }}>
+                Sua marca do <span style={{ color: 'var(--orange)' }}>zero ao<br />completo.</span>
+              </h1>
+
+              <p className="fade-up-3" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '17px', lineHeight: 1.65, color: 'rgba(242,238,229,0.65)', maxWidth: '480px', marginBottom: '36px' }}>
+                Logo, cores, fontes, mascote, pack Canva e artes prontas para gráfica — tudo o que sua marca precisa pra existir de verdade.
+              </p>
+
+              <div className="fade-up-3" style={{ display: 'inline-flex', flexDirection: 'column', gap: '4px' }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(242,238,229,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Investimento único</div>
+                <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: 'clamp(48px, 6vw, 72px)', letterSpacing: '-0.04em', color: 'var(--offwhite)', lineHeight: 1 }}>
+                  R$ 700
+                </div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(242,238,229,0.4)' }}>pagamento único · entrega em até 15 dias úteis</div>
+              </div>
+            </div>
+
+            {/* RIGHT — form */}
+            <div style={{ background: 'rgba(255,255,255,0.04)', border: '2px solid rgba(242,238,229,0.1)', borderRadius: '24px', padding: mobile ? '28px 24px' : '36px' }}>
+              <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '18px', letterSpacing: '-0.01em', color: 'var(--offwhite)', marginBottom: '6px' }}>Quero meu Brand Kit</div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(242,238,229,0.45)', marginBottom: '24px' }}>Preencha os dados para continuar</div>
+              <CheckoutForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DELIVERABLES */}
+      <section style={{ background: 'var(--offwhite)', color: '#000', padding: mobile ? '80px 0' : '120px 0', borderTop: '2px solid rgba(242,238,229,0.12)' }}>
+        <div className="container">
+          <div style={{ marginBottom: mobile ? '48px' : '64px' }}>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: '12px' }}>O que está incluso</div>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: 0.95, letterSpacing: '-0.03em', textTransform: 'uppercase', color: '#000' }}>
+              Tudo que sua<br /><span style={{ color: 'var(--orange)' }}>marca precisa.</span>
+            </h2>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(2, 1fr)', gap: '16px' }}>
+            {DELIVERABLES.map((d, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '20px', background: '#fff', border: '2px solid #000', borderRadius: '16px', padding: '24px' }}>
+                <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '24px', color: 'var(--orange)', flexShrink: 0, lineHeight: 1, minWidth: '32px' }}>{d.icon}</div>
+                <div>
+                  <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '17px', letterSpacing: '-0.01em', color: '#000', marginBottom: '4px' }}>{d.label}</div>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', lineHeight: 1.55, color: 'rgba(0,0,0,0.55)' }}>{d.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BOTTOM CTA */}
+      <section style={{ padding: mobile ? '80px 0' : '120px 0', textAlign: 'center' }}>
+        <div className="container">
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: 'clamp(32px, 5vw, 64px)', lineHeight: 0.95, letterSpacing: '-0.03em', textTransform: 'uppercase', color: 'var(--offwhite)', marginBottom: '20px' }}>
+            Sua marca merece<br /><span style={{ color: 'var(--orange)' }}>existir de verdade.</span>
+          </h2>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '17px', lineHeight: 1.6, color: 'rgba(242,238,229,0.55)', maxWidth: '520px', margin: '0 auto 40px' }}>
+            Suba a página e preencha o formulário para garantir seu Brand Kit por R$ 700.
+          </p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            style={{ padding: '16px 36px', borderRadius: '999px', border: '2px solid var(--orange)', cursor: 'pointer', fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '14px', letterSpacing: '0.06em', textTransform: 'uppercase', background: 'var(--orange)', color: '#000', transition: 'all 200ms' }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translate(-2px,-2px)'; e.currentTarget.style.boxShadow = '6px 6px 0 rgba(253,92,2,0.3)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
+          >
+            Quero meu Brand Kit →
+          </button>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer style={{ borderTop: '1px solid rgba(242,238,229,0.08)', padding: '32px 0' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: 'rgba(242,238,229,0.35)' }}>
+          <div>© 2026 IA MOD · Todos os direitos reservados</div>
+          <div>Feito com <span style={{ color: 'var(--orange)' }}>*</span> em São Paulo</div>
+        </div>
+      </footer>
+
+    </div>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
