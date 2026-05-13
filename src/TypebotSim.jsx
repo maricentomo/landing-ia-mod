@@ -31,8 +31,6 @@ const TypebotSim = () => {
         gap: isMobile ? '48px' : '80px',
         alignItems: 'center',
       }}>
-        {isMobile && <PhoneMockup isMobile={isMobile} />}
-
         <div className="reveal">
           <Eyebrow color="#000">Personalizado pra você</Eyebrow>
           <h2 style={{
@@ -93,7 +91,7 @@ const TypebotSim = () => {
           </div>
         </div>
 
-        {!isMobile && <PhoneMockup isMobile={false} />}
+        <PhoneMockup isMobile={isMobile} />
       </div>
     </section>
   );
@@ -135,13 +133,13 @@ const PhoneMockup = ({ isMobile }) => {
           overflow: 'hidden',
         }}>
           <video
-            src="uploads/video_demo.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+            autoPlay loop muted playsInline
+            webkit-playsinline="true"
+            preload="auto"
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          />
+          >
+            <source src="uploads/video_demo.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </div>
