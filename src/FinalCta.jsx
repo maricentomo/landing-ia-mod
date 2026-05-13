@@ -1,6 +1,7 @@
 // FINAL CTA + FOOTER
 
 const FinalCta = () => {
+  const isMobile = useIsMobile();
   return (
     <section style={{
       background: 'var(--orange)', color: '#000',
@@ -22,7 +23,7 @@ const FinalCta = () => {
           letterSpacing: '-0.04em', textTransform: 'uppercase',
           color: '#000', maxWidth: '1100px', margin: '0 auto 24px'
         }}>
-          Pronto pra <span style={{ fontStyle: 'italic', textDecoration: 'underline', textDecorationThickness: '8px', textUnderlineOffset: '12px', lineHeight: '1' }}>organizar</span> sua agenda?
+          Pronto pra <span style={{ fontStyle: 'italic', textDecoration: 'underline', textDecorationThickness: isMobile ? '4px' : '8px', textUnderlineOffset: isMobile ? '3px' : '12px', lineHeight: '1' }}>organizar</span> sua agenda?
         </h2>
 
         <p className="reveal" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '20px', lineHeight: 1.5, color: 'rgba(0,0,0,0.78)', maxWidth: '720px', margin: '0 auto 16px' }}>

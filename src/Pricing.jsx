@@ -187,6 +187,7 @@ const TermsModal = ({ onClose }) => {
 
 // ── Checkout Modal ─────────────────────────────
 const CheckoutModal = ({ plan, billing, onClose, onConfirm, loading }) => {
+  const isMobile = useIsMobile();
   const [form, setForm] = React.useState({ name: '', email: '', phone: '' });
   const [agreed, setAgreed] = React.useState(false);
   const [showTerms, setShowTerms] = React.useState(false);
@@ -236,7 +237,7 @@ const CheckoutModal = ({ plan, billing, onClose, onConfirm, loading }) => {
       <div onClick={onClose} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.65)', zIndex: 9998, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
         <div onClick={e => e.stopPropagation()} style={{ background: 'var(--offwhite)', borderRadius: '20px', width: '100%', maxWidth: '480px', border: '2px solid #000', boxShadow: '8px 8px 0 #000', display: 'flex', flexDirection: 'column', maxHeight: '90vh', overflow: 'hidden' }}>
           {/* Header */}
-          <div style={{ padding: '24px 28px 20px', borderBottom: '1px solid rgba(0,0,0,0.1)', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexShrink: 0 }}>
+          <div style={{ padding: isMobile ? '16px 20px 14px' : '24px 28px 20px', borderBottom: '1px solid rgba(0,0,0,0.1)', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexShrink: 0 }}>
             <div>
               <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '20px', letterSpacing: '-0.01em' }}>Antes de continuar</div>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', color: 'rgba(0,0,0,0.5)', marginTop: '4px' }}>Plano <strong>{plan.name}</strong> · {billing === 'mensal' ? 'Mensal' : 'Anual à vista'}</div>
@@ -244,7 +245,7 @@ const CheckoutModal = ({ plan, billing, onClose, onConfirm, loading }) => {
             <button onClick={onClose} style={{ background: 'none', border: '2px solid #000', borderRadius: '50%', width: 36, height: 36, cursor: 'pointer', fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>×</button>
           </div>
           {/* Form */}
-          <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', gap: '16px', overflowY: 'auto', flex: 1 }}>
+          <div style={{ padding: isMobile ? '12px 20px' : '24px 28px', display: 'flex', flexDirection: 'column', gap: isMobile ? '10px' : '16px', overflowY: 'auto', flex: 1 }}>
             {billing === 'mensal' && (
               <div style={{
                 background: 'rgba(253,92,2,0.08)',
@@ -295,7 +296,7 @@ const CheckoutModal = ({ plan, billing, onClose, onConfirm, loading }) => {
             </div>
           </div>
           {/* Footer */}
-          <div style={{ padding: '16px 28px 24px', flexShrink: 0 }}>
+          <div style={{ padding: isMobile ? '10px 20px 16px' : '16px 28px 24px', flexShrink: 0 }}>
             <button
               onClick={handleSubmit}
               disabled={loading}
