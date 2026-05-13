@@ -256,7 +256,7 @@ const CheckoutModal = ({ plan, billing, onClose, onConfirm, loading }) => {
                   Pagamento em 2 etapas
                 </div>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '13px', lineHeight: 1.55, color: 'rgba(0,0,0,0.72)' }}>
-                  Primeiro será cobrada a taxa de implementação <strong>({plan.mensal.implTo})</strong>. Após a confirmação, você receberá o link para ativar a assinatura mensal.
+                  Primeiro será cobrada a taxa de implementação <strong>({plan.mensal.implTo})</strong>. Após o pagamento, aguarde alguns segundos na tela — você será redirecionado automaticamente para concluir a assinatura.
                 </div>
               </div>
             )}
