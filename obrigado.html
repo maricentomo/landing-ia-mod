@@ -274,12 +274,74 @@
       Tudo <span>certo</span><br>por aqui!
     </h1>
 
-    <p class="subtitle" id="subtitle">
-      Recebemos seu pedido e em breve nossa equipe entrará em contato para dar início à configuração da sua agenda.
-    </p>
+    <p class="subtitle" id="subtitle"></p>
 
     <!-- Próximos passos -->
-    <div class="steps">
+    <div class="steps" id="steps"></div>
+
+    <div class="actions">
+      <a href="https://wa.me/5511933663007" class="btn btn-primary" target="_blank">
+        Falar no WhatsApp →
+      </a>
+      <a href="/" class="btn btn-outline" id="btn-voltar">
+        Voltar ao site
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  © 2025 IA MOD · Todos os direitos reservados
+</footer>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const plan = params.get('plan');
+
+  const isBrandkit = plan === 'brandkit';
+
+  const subtitle = document.getElementById('subtitle');
+  const steps = document.getElementById('steps');
+  const btnVoltar = document.getElementById('btn-voltar');
+
+  if (isBrandkit) {
+    subtitle.textContent = 'Recebemos seu pedido do Brand Kit Completo. Em breve nossa equipe entrará em contato para iniciar o seu projeto.';
+    btnVoltar.href = '/brandkit.html';
+    btnVoltar.textContent = 'Voltar ao Brand Kit';
+    steps.innerHTML = `
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Envio do briefing</strong>
+          <span>Nossa equipe entrará em contato em até 1 dia útil para coletar as informações da sua marca.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Criação da identidade</strong>
+          <span>Com o briefing em mãos, desenvolvemos logo, cores, fontes, mascote e todos os materiais.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>Entrega em até 15 dias úteis</strong>
+          <span>Você recebe todos os arquivos organizados, prontos para usar no digital e na gráfica.</span>
+        </div>
+      </div>
+    `;
+  } else {
+    const names = { essencial: 'Essencial', equipe: 'Equipe', completo: 'Completo' };
+    const billing = params.get('billing');
+    const billingLabel = { mensal: 'mensal', anual: 'anual à vista' };
+    const planName = names[plan] || '';
+    const b = billing ? ` (${billingLabel[billing] || billing})` : '';
+    subtitle.textContent = planName
+      ? `Recebemos seu pedido do plano ${planName}${b}. Em breve nossa equipe entrará em contato para dar início à configuração da sua agenda.`
+      : 'Recebemos seu pedido. Em breve nossa equipe entrará em contato.';
+    steps.innerHTML = `
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-text">
@@ -301,37 +363,7 @@
           <span>Em poucos dias sua agenda personalizada estará funcionando e pronta para receber clientes.</span>
         </div>
       </div>
-    </div>
-
-    <div class="actions">
-      <a href="https://wa.me/5500000000000" class="btn btn-primary" target="_blank">
-        Falar no WhatsApp →
-      </a>
-      <a href="/" class="btn btn-outline">
-        Voltar ao site
-      </a>
-    </div>
-
-  </div>
-</main>
-
-<footer class="footer">
-  © 2025 IA MOD · Todos os direitos reservados
-</footer>
-
-<script>
-  // Lê o plano da URL para personalizar a mensagem
-  const params = new URLSearchParams(window.location.search);
-  const plan = params.get('plan');
-  const billing = params.get('billing');
-
-  const names = { essencial: 'Essencial', equipe: 'Equipe', completo: 'Completo' };
-  const billingLabel = { mensal: 'mensal', anual: 'anual' };
-
-  if (plan && names[plan]) {
-    const subtitle = document.getElementById('subtitle');
-    const b = billing ? ` (${billingLabel[billing]})` : '';
-    subtitle.textContent = `Recebemos seu pedido do plano ${names[plan]}${b}. Em breve nossa equipe entrará em contato para dar início à configuração da sua agenda.`;
+    `;
   }
 </script>
 
