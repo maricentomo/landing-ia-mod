@@ -82,7 +82,7 @@ const Footer = () => {
 
           <div>
             <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '11px', color: 'var(--orange)', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '16px' }}>Contato</div>
-            <a href="https://wa.me/5511933663007" style={{ display: 'block', fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(242,238,229,0.7)', padding: '6px 0' }}>WhatsApp</a>
+            <a href="https://wa.me/5511940723912" style={{ display: 'block', fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(242,238,229,0.7)', padding: '6px 0' }}>WhatsApp</a>
             <a href="https://instagram.com/iamod.digital" style={{ display: 'block', fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(242,238,229,0.7)', padding: '6px 0' }}>Instagram</a>
             <a href="mailto:contato@iamod.com.br" style={{ display: 'block', fontFamily: "'DM Sans', sans-serif", fontSize: '14px', color: 'rgba(242,238,229,0.7)', padding: '6px 0' }}>contato@iamod.com.br</a>
           </div>
