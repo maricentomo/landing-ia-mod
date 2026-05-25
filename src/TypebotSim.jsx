@@ -33,6 +33,20 @@ const TypebotSim = () => {
       }}>
         <div className="reveal">
           <Eyebrow color="#000">Personalizado pra você</Eyebrow>
+
+          <div style={{ margin: '28px 0 0', display: 'flex', justifyContent: 'flex-start' }}>
+            <img
+              src="uploads/trabalhando.png"
+              alt=""
+              style={{
+                width: isMobile ? '160px' : '200px',
+                objectFit: 'contain',
+                animation: 'float-y 5s ease-in-out infinite',
+                filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.12))',
+              }}
+            />
+          </div>
+
           <h2 style={{
             fontFamily: "'Bricolage Grotesque', sans-serif",
             fontWeight: 800,

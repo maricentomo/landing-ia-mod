@@ -34,7 +34,7 @@ const Nav = () => {
         <div className="container" style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <a href="index.html" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
             <Asterisk size={32} color="orange" spin />
             <div style={{
               fontFamily: "'Bricolage Grotesque', sans-serif",
@@ -48,7 +48,7 @@ const Nav = () => {
                 textTransform: 'uppercase', marginTop: '-2px',
               }}>Agenda Inteligente</span>
             </div>
-          </div>
+          </a>
 
           {isMobile ? (
             <button
@@ -75,6 +75,16 @@ const Nav = () => {
             </button>
           ) : (
             <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+              <a href="index.html" style={{
+                fontFamily: "'DM Sans', sans-serif", fontSize: '14px',
+                fontWeight: 500, color: 'rgba(242,238,229,0.55)',
+                transition: 'color 200ms ease',
+              }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--orange)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(242,238,229,0.55)'}
+              >
+                ← Home
+              </a>
               {links.map(l => (
                 <a key={l.href} href={l.href} style={{
                   fontFamily: "'DM Sans', sans-serif", fontSize: '14px',
@@ -108,6 +118,16 @@ const Nav = () => {
           pointerEvents: menuOpen ? 'all' : 'none',
           transition: 'opacity 250ms ease-out',
         }}>
+          <a href="index.html" style={{
+              fontFamily: "'Bricolage Grotesque', sans-serif",
+              fontWeight: 800, fontSize: '24px',
+              color: 'rgba(242,238,229,0.55)',
+              letterSpacing: '-0.02em',
+              textDecoration: 'none',
+            }}
+          >
+            ← Home
+          </a>
           {links.map(l => (
             <a key={l.href} href={l.href}
               onClick={(e) => { e.preventDefault(); handleLink(l.href); }}
