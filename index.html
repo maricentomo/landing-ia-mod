@@ -74,8 +74,8 @@
   .section--orange .eyebrow::before { background: var(--black); }
 
   h1, h2, h3, h4 { font-family: var(--font); font-weight: 800; letter-spacing: -0.03em; line-height: 1.0; }
-  h1 { font-size: clamp(48px, 6.4vw, 92px); }
-  h2 { font-size: clamp(40px, 4.6vw, 68px); line-height: 1.02; }
+  h1 { font-size: clamp(48px, 6.4vw, 92px); text-transform: uppercase; }
+  h2 { font-size: clamp(40px, 4.6vw, 68px); line-height: 1.02; text-transform: uppercase; }
   h3 { font-size: clamp(24px, 2vw, 30px); line-height: 1.1; letter-spacing: -0.02em; }
   h4 { font-size: 20px; letter-spacing: -0.01em; }
 
@@ -455,6 +455,78 @@
   .final-tag { font-size: 13px; font-weight: 700; color: var(--orange); letter-spacing: 0.14em; text-transform: uppercase; margin: 32px 0; }
   .final-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
 
+  /* ───────── MOBILE MENU ───────── */
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    width: 40px; height: 40px; align-items: center; justify-content: center;
+    cursor: pointer; background: none; border: none; padding: 6px; flex-shrink: 0;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--offwhite); border-radius: 2px; transition: all 250ms ease-out;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (max-width: 900px) { .nav-hamburger { display: flex; } }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; top: 61px;
+    background: rgba(0,0,0,0.98); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    z-index: 98; flex-direction: column; align-items: center; justify-content: center;
+    gap: 4px; padding: 40px 40px 60px; border-top: 1px solid var(--border);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: clamp(28px, 7vw, 42px); font-weight: 800; letter-spacing: -0.03em;
+    text-transform: uppercase; color: var(--muted-strong); padding: 10px 0;
+    transition: color 150ms ease-out; line-height: 1;
+  }
+  .mobile-menu a:hover { color: var(--offwhite); }
+  .mobile-menu .mobile-cta {
+    margin-top: 28px; background: var(--orange); color: var(--offwhite);
+    padding: 16px 36px; border-radius: var(--r-pill); font-size: 16px; font-weight: 700;
+    letter-spacing: -0.01em; text-transform: none;
+  }
+  .mobile-menu .mobile-cta:hover { background: var(--orange-hover); color: var(--offwhite); }
+
+  /* ───────── AGENDA DESTAQUE ───────── */
+  .agenda-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .agenda-features { display: flex; flex-direction: column; gap: 8px; }
+  .agenda-feature {
+    display: flex; align-items: center; gap: 14px; padding: 13px 16px;
+    border-radius: 12px; border: 2px solid transparent; background: transparent;
+    font-size: 16px; font-weight: 600; color: var(--muted-strong);
+    transition: all 200ms ease-out;
+  }
+  .agenda-feature:hover { background: var(--surface); border-color: var(--border-strong); color: var(--offwhite); }
+  .agenda-feat-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--orange); color: #000;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 13px; flex-shrink: 0;
+  }
+  .phone-outer { display: flex; justify-content: center; position: relative; }
+  .phone-glow {
+    position: absolute; bottom: -40px; width: 70%; height: 40px;
+    background: rgba(253,92,2,0.18); border-radius: 50%; filter: blur(24px);
+  }
+  .phone-body {
+    width: 280px; height: 575px; background: #111; border-radius: 48px; padding: 14px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+    position: relative; animation: float 6s ease-in-out infinite;
+  }
+  .phone-notch {
+    position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 24px; background: #111; border-radius: 999px; z-index: 5;
+  }
+  .phone-screen { width: 100%; height: 100%; background: #000; border-radius: 36px; overflow: hidden; }
+  @media (max-width: 900px) {
+    .agenda-grid { grid-template-columns: 1fr; gap: 48px; }
+    .phone-body { width: 240px; height: 490px; }
+  }
+
   /* ───────── FOOTER ───────── */
   footer { background: var(--surface-2); border-top: 1px solid var(--border); padding: 64px 0 40px; }
   .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
@@ -491,8 +563,22 @@
       <a href="#contato">Contato</a>
     </div>
     <a class="nav-cta" href="#contato">Falar sobre meu projeto</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ════════════════ MOBILE MENU ════════════════ -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobile">
+  <a href="#inicio" class="mobile-link">Início</a>
+  <a href="#sobre" class="mobile-link">Sobre</a>
+  <a href="#servicos" class="mobile-link">Serviços</a>
+  <a href="#diagnostico" class="mobile-link">Diagnóstico</a>
+  <a href="agendamento.html" class="mobile-link">Agenda Online</a>
+  <a href="#contato" class="mobile-link">Contato</a>
+  <a href="#contato" class="mobile-cta">Falar sobre meu projeto →</a>
+</div>
 
 <!-- ════════════════ HERO ════════════════ -->
 <section class="hero" id="inicio">
@@ -814,41 +900,38 @@
   </div>
 </section>
 
-<!-- ════════════════ MÉTODO ════════════════ -->
-<section class="section">
+<!-- ════════════════ AGENDA DESTAQUE ════════════════ -->
+<section class="section" style="background: var(--black); border-top: 1px solid var(--border);">
   <div class="wrap">
-    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+    <div class="agenda-grid">
       <div>
-        <span class="eyebrow">Como trabalhamos</span>
-        <h2 style="margin-top: 18px; max-width: 14ch;">
-          <span class="cream">Um método em </span><span class="or">quatro tempos.</span>
+        <span class="eyebrow">Produto em destaque</span>
+        <h2 style="margin-top: 24px;">
+          <span class="cream">Conheça nossa </span><span class="or">Agenda Inteligente.</span>
         </h2>
+        <p style="margin-top: 24px; font-size: 18px; margin-bottom: 32px; max-width: 48ch;">
+          Cada detalhe é construído com a identidade do seu negócio, do visual ao texto. Seu cliente sente que é da sua marca, não de um sistema genérico.
+        </p>
+        <div class="agenda-features">
+          <div class="agenda-feature"><span class="agenda-feat-num">1</span>Visual com as cores e logo do negócio</div>
+          <div class="agenda-feature"><span class="agenda-feat-num">2</span>Linguagem e tom adaptados à sua marca</div>
+          <div class="agenda-feature"><span class="agenda-feat-num">3</span>Serviços, preços e profissionais organizados</div>
+          <div class="agenda-feature"><span class="agenda-feat-num">4</span>Confirmação e lembretes automáticos</div>
+          <div class="agenda-feature"><span class="agenda-feat-num">5</span>Atualiza quando você precisar</div>
+        </div>
+        <a href="agendamento.html" class="btn btn-primary" style="margin-top: 36px; display: inline-flex;">Conhecer a Agenda Online →</a>
       </div>
-      <p style="max-width: 38ch; font-size: 16px;">
-        Antes da entrega, um processo simples para garantir que a solução seja a certa — e não só a mais bonita.
-      </p>
-    </div>
 
-    <div class="method">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h4>Entendemos o momento</h4>
-        <p>Antes de propor uma solução, buscamos entender o que existe hoje, o que está travando e qual é o próximo passo mais importante.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h4>Organizamos as ideias</h4>
-        <p>Transformamos informações espalhadas em direção: público, narrativa, identidade, serviços, objetivos e prioridades.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h4>Criamos a solução</h4>
-        <p>A entrega pode ser visual, estratégica, digital ou tecnológica — depende do que o projeto realmente precisa.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h4>Deixamos pronto para uso</h4>
-        <p>Uma marca clara, uma página publicada, uma consultoria estruturada, uma agenda funcionando — algo aplicável.</p>
+      <div class="phone-outer">
+        <div class="phone-glow"></div>
+        <div class="phone-body">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <video autoplay loop muted playsinline webkit-playsinline="true" preload="auto" style="width:100%;height:100%;object-fit:cover;display:block;">
+              <source src="uploads/chat.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -988,33 +1071,22 @@
     el.style.scrollMarginTop = '80px';
   });
 
-  // Form submit → WhatsApp
-  document.getElementById('projeto-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nome = document.getElementById('f-nome').value.trim();
-    const whats = document.getElementById('f-whats').value.trim();
-    if (!nome || !whats) {
-      alert('Por favor, preencha pelo menos seu nome e WhatsApp.');
-      return;
-    }
-    const getChecked = (name) =>
-      Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value).join(', ');
-
-    const negocio = document.getElementById('f-negocio').value.trim();
-    const melhorar = getChecked('melhorar');
-    const quer = getChecked('quer');
-    const msg = document.getElementById('f-msg').value.trim();
-
-    const texto = [
-      'Olá! Vim pelo site da ia MOD e quero falar sobre meu projeto.',
-      `*Nome:* ${nome}`,
-      negocio ? `*Negócio:* ${negocio}` : '',
-      melhorar ? `*Precisa melhorar:* ${melhorar}` : '',
-      quer ? `*Quer contratar:* ${quer}` : '',
-      msg ? `*Mensagem:* ${msg}` : '',
-    ].filter(Boolean).join('\n');
-
-    window.open(`https://wa.me/5511940723912?text=${encodeURIComponent(texto)}`, '_blank');
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    });
   });
 </script>
 
