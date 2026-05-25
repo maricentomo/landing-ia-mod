@@ -284,16 +284,17 @@
   .srv-2 { grid-column: span 3; background: var(--offwhite); color: var(--black); }
   .srv-3 { grid-column: span 2; background: var(--orange); color: var(--black); }
   .srv-4 { grid-column: span 2; background: var(--surface-2); }
-  .srv-5 { grid-column: span 2; background: var(--surface); border: 1px solid var(--border-strong); }
+  .srv-5 { grid-column: span 2; background: var(--offwhite); color: var(--black); }
   .srv-6 { grid-column: span 3; background: var(--surface-2); }
   .srv-agenda { grid-column: span 3; background: var(--orange); color: var(--black); position: relative; }
   .srv-num { font-size: 14px; font-weight: 800; letter-spacing: 0.14em; opacity: 0.6; }
   .srv h3 { font-size: 30px; line-height: 1.05; letter-spacing: -0.025em; }
-  .srv-1 h3, .srv-4 h3, .srv-6 h3, .srv-5 h3 { color: var(--offwhite); }
+  .srv-1 h3, .srv-4 h3, .srv-6 h3 { color: var(--offwhite); }
+  .srv-5 h3 { color: var(--black); }
   .srv-2 h3 { color: var(--black); }
   .srv-3 h3, .srv-agenda h3 { color: var(--black); }
   .srv-desc { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.65); flex: 1; }
-  .srv-2 .srv-desc { color: rgba(0,0,0,0.72); }
+  .srv-2 .srv-desc, .srv-5 .srv-desc { color: rgba(0,0,0,0.72); }
   .srv-3 .srv-desc, .srv-agenda .srv-desc { color: rgba(0,0,0,0.78); }
   .srv-ideal { font-size: 13px; padding-top: 16px; border-top: 1px solid currentColor; opacity: 0.55; line-height: 1.5; }
   .srv-ideal strong { font-weight: 700; opacity: 1; }
@@ -301,7 +302,7 @@
   .srv-2 .srv-cta { color: var(--black); }
   .srv-3 .srv-cta, .srv-agenda .srv-cta { color: var(--black); }
   .srv-asterisk { position: absolute; right: -30px; bottom: -30px; width: 180px; height: 180px; opacity: 0.08; pointer-events: none; }
-  .srv-3 .srv-asterisk, .srv-agenda .srv-asterisk, .srv-2 .srv-asterisk { opacity: 0.18; }
+  .srv-3 .srv-asterisk, .srv-agenda .srv-asterisk, .srv-2 .srv-asterisk, .srv-5 .srv-asterisk { opacity: 0.18; }
   @media (max-width: 1100px) {
     .services { grid-template-columns: repeat(2, 1fr); }
     .srv-1, .srv-2, .srv-3, .srv-4, .srv-5, .srv-6, .srv-agenda { grid-column: span 1; }
