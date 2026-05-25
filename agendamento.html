@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Inteligente · IA MOD</title>
+<link rel="icon" type="image/png" href="assets/asterisk-orange.png">
+
+<style>
+  /* ─── BRAND FONTS ─── */
+  @font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('fonts/BricolageGrotesque_48pt-ExtraBold.ttf') format('truetype');
+    font-weight: 800; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('fonts/BricolageGrotesque_24pt_SemiCondensed-Bold.ttf') format('truetype');
+    font-weight: 700; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('fonts/BricolageGrotesque_48pt-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --orange: #FD5C02;
+    --orange-hover: #D94E02;
+    --black: #000000;
+    --offwhite: #F2EEE5;
+    --offwhite-2: #E8E2D5;
+    --dark-1: #111111;
+    --dark-2: #1A1A1A;
+    --dark-3: #222222;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--offwhite);
+    font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  button, input, select, textarea { font-family: inherit; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; }
+
+  /* ─── UTIL ─── */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 767px) {
+    .container { padding: 0 20px; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+  @keyframes spin-rev { from { transform: rotate(360deg); } to { transform: rotate(0); } }
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  @keyframes pulse-orange {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(253, 92, 2, 0.5); }
+    50% { box-shadow: 0 0 0 18px rgba(253, 92, 2, 0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes typing-dot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+  @keyframes pop-in {
+    0% { opacity: 0; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slide-up-in {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ring {
+    0%, 100% { transform: rotate(0); }
+    20% { transform: rotate(-12deg); }
+    40% { transform: rotate(12deg); }
+    60% { transform: rotate(-8deg); }
+    80% { transform: rotate(8deg); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script>
+  // URL da API de pagamentos — altere para o domínio real da sua API no Coolify
+  window.API_URL = 'https://iamod-api-pagamentos.k474gt.easypanel.host';
+</script>
+
+<script type="text/babel" src="src/atoms.jsx"></script>
+<script type="text/babel" src="src/Nav.jsx"></script>
+<script type="text/babel" src="src/Hero.jsx"></script>
+<script type="text/babel" src="src/ProblemSection.jsx"></script>
+<script type="text/babel" src="src/StatsCharts.jsx"></script>
+<script type="text/babel" src="src/HowItWorks.jsx"></script>
+<script type="text/babel" src="src/TypebotSim.jsx"></script>
+<script type="text/babel" src="src/Niches.jsx"></script>
+<script type="text/babel" src="src/Benefits.jsx"></script>
+<script type="text/babel" src="src/Pricing.jsx"></script>
+<script type="text/babel" src="src/CompareTable.jsx"></script>
+<script type="text/babel" src="src/Faq.jsx"></script>
+<script type="text/babel" src="src/FinalCta.jsx"></script>
+<script type="text/babel" src="src/Footer.jsx"></script>
+
+<script type="text/babel">
+  const { useEffect } = React;
+
+  // Scroll reveal observer
+  const useReveal = () => {
+    useEffect(() => {
+      const els = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+      return () => io.disconnect();
+    }, []);
+  };
+
+  const App = () => {
+    useReveal();
+    return (
+      <>
+        <Nav />
+        <Hero />
+        <Marquee />
+        <ProblemSection />
+        <StatsCharts />
+        <Niches />
+        <HowItWorks />
+        <TypebotSim />
+        <Benefits />
+        <Pricing />
+        <CompareTable />
+        <Faq />
+        <FinalCta />
+        <Footer />
+      </>
+    );
+  };
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>

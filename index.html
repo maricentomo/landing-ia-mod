@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agenda Inteligente · IA MOD</title>
+<title>Ia MOD — Design, Tecnologia e Ideias para Pequenos Negócios</title>
+<meta name="description" content="A Ia MOD cria marcas, sites, páginas, diagnósticos e soluções digitais para profissionais autônomos e pequenos empresários. Design, tecnologia e estratégia.">
 <link rel="icon" type="image/png" href="assets/asterisk-orange.png">
 
 <style>
-  /* ─── BRAND FONTS ─── */
   @font-face {
     font-family: 'Bricolage Grotesque';
     src: url('fonts/BricolageGrotesque_48pt-ExtraBold.ttf') format('truetype');
@@ -49,130 +49,1178 @@
   a { color: inherit; text-decoration: none; }
   img { display: block; }
 
-  /* ─── UTIL ─── */
-  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-  @media (max-width: 767px) {
-    .container { padding: 0 20px; }
-  }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 767px) { .container { padding: 0 20px; } }
 
-  /* ─── ANIMATIONS ─── */
+  /* ANIMATIONS */
   @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-  @keyframes spin-rev { from { transform: rotate(360deg); } to { transform: rotate(0); } }
-  @keyframes float-y {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-14px); }
-  }
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(-3deg); }
-    50% { transform: rotate(3deg); }
-  }
-  @keyframes pulse-orange {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(253, 92, 2, 0.5); }
-    50% { box-shadow: 0 0 0 18px rgba(253, 92, 2, 0); }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes typing-dot {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-6px); opacity: 1; }
-  }
-  @keyframes pop-in {
-    0% { opacity: 0; transform: scale(0.85); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-  @keyframes slide-up-in {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes ring {
-    0%, 100% { transform: rotate(0); }
-    20% { transform: rotate(-12deg); }
-    40% { transform: rotate(12deg); }
-    60% { transform: rotate(-8deg); }
-    80% { transform: rotate(8deg); }
+  @keyframes pulse-orange {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(253,92,2,0.45); }
+    50% { box-shadow: 0 0 0 16px rgba(253,92,2,0); }
   }
 
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-</style>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  /* NAV */
+  .nav {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(242,238,229,0.08);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(12px);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .nav-logo {
+    font-weight: 800; font-size: 21px; letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 9px; flex-shrink: 0;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-logo img { animation: spin-slow 14s linear infinite; }
+  .nav-links { display: flex; align-items: center; gap: 24px; }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    color: rgba(242,238,229,0.65);
+    transition: color 200ms; white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--offwhite); }
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 999px;
+    background: var(--orange); color: #000;
+    font-weight: 800; font-size: 12px; letter-spacing: 0.03em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    transition: background 200ms, transform 200ms;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .nav-cta:hover { background: var(--orange-hover); transform: translateY(-1px); }
+  .nav-hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 5px; padding: 6px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--offwhite); border-radius: 2px; transition: all 250ms;
+  }
+  @media (max-width: 960px) { .nav-links { display: none; } }
+  @media (max-width: 600px) {
+    .nav-cta { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(0,0,0,0.97);
+    flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-weight: 800; font-size: 28px; letter-spacing: -0.02em;
+    text-transform: uppercase; color: var(--offwhite); transition: color 200ms;
+  }
+  .mobile-menu a:hover { color: var(--orange); }
+  .mobile-menu .mob-cta {
+    margin-top: 8px; padding: 16px 32px; border-radius: 999px;
+    background: var(--orange); color: #000;
+    font-weight: 800; font-size: 14px; text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 88px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(253,92,2,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; border-radius: 999px;
+    border: 1px solid rgba(253,92,2,0.35); background: rgba(253,92,2,0.08);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--orange); letter-spacing: 0.04em; margin-bottom: 28px;
+    animation: fade-up 0.6s ease-out both;
+  }
+  .hero-eyebrow-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--orange);
+    animation: pulse-orange 2s ease-in-out infinite;
+  }
+  .hero-h1 {
+    font-weight: 800; font-size: clamp(38px, 6vw, 76px);
+    line-height: 1.03; letter-spacing: -0.03em;
+    max-width: 860px; margin: 0 auto;
+    animation: fade-up 0.6s 0.1s ease-out both;
+  }
+  .hero-h1 em { color: var(--orange); font-style: normal; }
+  .hero-sub {
+    margin-top: 24px;
+    font-family: 'DM Sans', sans-serif; font-size: clamp(15px, 2vw, 18px);
+    color: rgba(242,238,229,0.6); line-height: 1.75;
+    max-width: 660px; margin-left: auto; margin-right: auto;
+    animation: fade-up 0.6s 0.2s ease-out both;
+  }
+  .hero-actions {
+    margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    animation: fade-up 0.6s 0.3s ease-out both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 17px 32px; border-radius: 999px;
+    background: var(--orange); color: #000;
+    font-weight: 800; font-size: 14px; letter-spacing: 0.03em; text-transform: uppercase;
+    border: none; cursor: pointer;
+    transition: background 200ms, transform 150ms, box-shadow 150ms;
+  }
+  .btn-primary:hover { background: var(--orange-hover); transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(253,92,2,0.25); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 17px 32px; border-radius: 999px;
+    background: transparent; color: var(--offwhite);
+    font-weight: 700; font-size: 14px; text-transform: uppercase;
+    border: 2px solid rgba(242,238,229,0.2); cursor: pointer;
+    transition: border-color 200ms, transform 150ms;
+  }
+  .btn-ghost:hover { border-color: rgba(242,238,229,0.5); transform: translateY(-1px); }
+  .hero-microcopy {
+    margin-top: 44px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: rgba(242,238,229,0.32); max-width: 520px;
+    margin-left: auto; margin-right: auto; line-height: 1.65;
+    animation: fade-up 0.6s 0.4s ease-out both;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid rgba(242,238,229,0.07);
+    border-bottom: 1px solid rgba(242,238,229,0.07);
+    padding: 14px 0; background: var(--dark-1);
+  }
+  .marquee-track {
+    display: flex; width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-item {
+    display: flex; align-items: center; gap: 12px; padding: 0 28px;
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+    color: rgba(242,238,229,0.38); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+  }
+  .marquee-dot { color: var(--orange); font-size: 14px; }
+
+  /* SECTION BASE */
+  .section { padding: 88px 0; }
+  .bg-dark { background: var(--dark-1); }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px;
+  }
+  .section-tag::before { content: '✦'; font-size: 9px; }
+  .section-h2 {
+    font-weight: 800; font-size: clamp(28px, 4.2vw, 50px);
+    line-height: 1.06; letter-spacing: -0.025em;
+  }
+  .section-h2 em { color: var(--orange); font-style: normal; }
+  .section-sub {
+    margin-top: 14px; font-family: 'DM Sans', sans-serif;
+    font-size: 16px; color: rgba(242,238,229,0.55); line-height: 1.7; max-width: 620px;
+  }
+  .body-text {
+    font-family: 'DM Sans', sans-serif; font-size: 16px;
+    color: rgba(242,238,229,0.62); line-height: 1.8;
+  }
+  .body-text p + p { margin-top: 16px; }
+
+  /* CONTEXT */
+  .context-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+  }
+  @media (max-width: 768px) { .context-inner { grid-template-columns: 1fr; gap: 40px; } }
+  .context-quote {
+    font-weight: 800; font-size: clamp(24px, 3.2vw, 38px);
+    line-height: 1.15; letter-spacing: -0.02em;
+  }
+  .context-quote em { color: var(--orange); font-style: normal; }
+
+  /* CENTOMO */
+  .centomo-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+  }
+  @media (max-width: 768px) { .centomo-inner { grid-template-columns: 1fr; gap: 40px; } }
+  .centomo-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 9px 18px; border-radius: 999px;
+    border: 1px solid rgba(242,238,229,0.14);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+    color: rgba(242,238,229,0.45); margin-bottom: 28px;
+  }
+  .centomo-arrow { color: var(--orange); }
+  .centomo-stat {
+    margin-top: 32px; padding: 24px 28px;
+    border: 1px solid rgba(253,92,2,0.2); border-radius: 20px;
+    background: rgba(253,92,2,0.04);
+  }
+  .centomo-stat-num {
+    font-weight: 800; font-size: 56px; letter-spacing: -0.04em;
+    color: var(--orange); line-height: 1;
+  }
+  .centomo-stat-label {
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: rgba(242,238,229,0.45); margin-top: 6px; line-height: 1.4;
+  }
+
+  /* AUDIENCE */
+  .audience-list { margin-top: 44px; display: flex; flex-direction: column; gap: 14px; }
+  .audience-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 22px 26px;
+    border: 1px solid rgba(242,238,229,0.07); border-radius: 16px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 200ms, background 200ms;
+  }
+  .audience-item:hover { border-color: rgba(253,92,2,0.28); background: rgba(253,92,2,0.03); }
+  .audience-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(253,92,2,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; flex-shrink: 0;
+  }
+  .audience-text {
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    color: rgba(242,238,229,0.68); line-height: 1.6;
+  }
+  .audience-text strong { font-weight: 700; color: var(--offwhite); }
+
+  /* SERVICES */
+  .services-grid {
+    margin-top: 52px; display: grid;
+    grid-template-columns: repeat(3,1fr); gap: 18px;
+  }
+  @media (max-width: 960px) { .services-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr; } }
+  .service-card {
+    padding: 30px 26px;
+    border: 1px solid rgba(242,238,229,0.08); border-radius: 22px;
+    background: var(--dark-2); display: flex; flex-direction: column;
+    transition: border-color 200ms, transform 200ms;
+  }
+  .service-card:hover { border-color: rgba(253,92,2,0.35); transform: translateY(-4px); }
+  .service-num {
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(242,238,229,0.25); margin-bottom: 18px;
+  }
+  .service-icon {
+    width: 46px; height: 46px; border-radius: 13px;
+    background: rgba(253,92,2,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 18px;
+  }
+  .service-name { font-weight: 800; font-size: 19px; margin-bottom: 10px; line-height: 1.2; }
+  .service-desc {
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: rgba(242,238,229,0.5); line-height: 1.65; flex: 1;
+  }
+  .service-ideal {
+    display: inline-block; margin-top: 16px;
+    padding: 5px 13px; border-radius: 999px;
+    border: 1px solid rgba(242,238,229,0.1);
+    font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(242,238,229,0.38);
+  }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+    color: var(--orange); transition: gap 200ms;
+  }
+  .service-link:hover { gap: 10px; }
+
+  /* WHY */
+  .why-grid {
+    margin-top: 48px; display: grid;
+    grid-template-columns: repeat(4,1fr); gap: 14px;
+  }
+  @media (max-width: 960px) { .why-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 480px) { .why-grid { grid-template-columns: 1fr; } }
+  .why-card {
+    padding: 26px 20px;
+    border: 1px solid rgba(242,238,229,0.07); border-radius: 18px;
+    background: rgba(255,255,255,0.02);
+  }
+  .why-icon { font-size: 26px; margin-bottom: 14px; }
+  .why-title { font-weight: 800; font-size: 16px; margin-bottom: 8px; }
+  .why-desc {
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: rgba(242,238,229,0.5); line-height: 1.6;
+  }
+
+  /* METHOD */
+  .method-steps {
+    margin-top: 52px; display: flex; flex-direction: column; max-width: 680px;
+  }
+  .method-step { display: grid; grid-template-columns: 76px 1fr; position: relative; }
+  .method-step:not(:last-child)::after {
+    content: ''; position: absolute;
+    left: 37px; top: 68px; width: 2px; bottom: 0;
+    background: linear-gradient(to bottom, rgba(253,92,2,0.3), rgba(253,92,2,0.05));
+  }
+  .step-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+  .step-num {
+    width: 50px; height: 50px; border-radius: 50%;
+    border: 2px solid rgba(253,92,2,0.4); background: rgba(253,92,2,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 17px; color: var(--orange); flex-shrink: 0;
+  }
+  .step-body { padding: 2px 0 48px 24px; }
+  .step-title { font-weight: 800; font-size: 20px; margin-bottom: 8px; }
+  .step-desc {
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    color: rgba(242,238,229,0.52); line-height: 1.65;
+  }
+
+  /* SOLUTIONS TABLE */
+  .table-wrap { margin-top: 48px; overflow-x: auto; }
+  .sol-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  .sol-table th {
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(242,238,229,0.38); text-align: left;
+    padding: 12px 20px; border-bottom: 1px solid rgba(242,238,229,0.1);
+  }
+  .sol-table td {
+    padding: 16px 20px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+    line-height: 1.5; border-bottom: 1px solid rgba(242,238,229,0.05);
+    color: rgba(242,238,229,0.7); vertical-align: top;
+  }
+  .sol-table tr:hover td { background: rgba(253,92,2,0.03); }
+  .sol-table td:first-child { font-weight: 700; color: var(--offwhite); }
+  .sol-table a { color: var(--orange); }
+  .sol-table a:hover { text-decoration: underline; }
+
+  /* DIFFERENCE */
+  .diff-items { margin-top: 36px; display: flex; flex-direction: column; gap: 12px; }
+  .diff-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 22px; border-radius: 14px;
+    border: 1px solid rgba(242,238,229,0.06); background: rgba(255,255,255,0.015);
+  }
+  .diff-dash { color: var(--orange); font-weight: 800; font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .diff-text {
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    color: rgba(242,238,229,0.62); line-height: 1.6;
+  }
+
+  /* MID CTA */
+  .mid-cta {
+    padding: 80px 0; text-align: center;
+    border-top: 1px solid rgba(242,238,229,0.06);
+    border-bottom: 1px solid rgba(242,238,229,0.06);
+  }
+  .mid-cta-h2 {
+    font-weight: 800; font-size: clamp(26px, 3.8vw, 46px);
+    line-height: 1.1; letter-spacing: -0.025em;
+    max-width: 600px; margin: 0 auto 14px;
+  }
+  .mid-cta-h2 em { color: var(--orange); font-style: normal; }
+  .mid-cta-sub {
+    font-family: 'DM Sans', sans-serif; font-size: 16px;
+    color: rgba(242,238,229,0.5); line-height: 1.65;
+    max-width: 520px; margin: 0 auto 36px;
+  }
+
+  /* FORM */
+  .form-wrap {
+    margin-top: 52px; display: grid;
+    grid-template-columns: 260px 1fr; gap: 56px; align-items: start;
+  }
+  @media (max-width: 860px) { .form-wrap { grid-template-columns: 1fr; gap: 36px; } }
+  .form-aside-item {
+    display: flex; align-items: flex-start; gap: 14px; margin-bottom: 22px;
+  }
+  .form-aside-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: rgba(253,92,2,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .form-aside-text {
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: rgba(242,238,229,0.5); line-height: 1.6;
+  }
+  .form-aside-text strong { font-weight: 700; color: var(--offwhite); }
+  .form-fieldset-title {
+    font-weight: 800; font-size: 17px; margin: 32px 0 18px;
+    padding-bottom: 12px; border-bottom: 1px solid rgba(242,238,229,0.08);
+  }
+  .form-fieldset-title:first-child { margin-top: 0; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    display: block; margin-bottom: 7px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+    color: rgba(242,238,229,0.6);
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; padding: 12px 15px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(242,238,229,0.11);
+    border-radius: 12px; color: var(--offwhite);
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    transition: border-color 200ms, background 200ms; outline: none; -webkit-appearance: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(242,238,229,0.22); }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: rgba(253,92,2,0.45); background: rgba(253,92,2,0.04);
+  }
+  .form-select { cursor: pointer; }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .chip-group { display: flex; flex-wrap: wrap; gap: 9px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid rgba(242,238,229,0.11); background: rgba(255,255,255,0.02);
+    font-family: 'DM Sans', sans-serif; font-size: 13px;
+    color: rgba(242,238,229,0.6); cursor: pointer;
+    transition: all 200ms; user-select: none;
+  }
+  .chip:hover { border-color: rgba(253,92,2,0.4); color: var(--offwhite); }
+  .chip.active { border-color: var(--orange); background: rgba(253,92,2,0.1); color: var(--offwhite); }
+  .chip input { display: none; }
+  .form-submit { margin-top: 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .form-privacy {
+    font-family: 'DM Sans', sans-serif; font-size: 12px; color: rgba(242,238,229,0.28);
+  }
+
+  /* FINAL */
+  .final {
+    padding: 100px 0; text-align: center; position: relative; overflow: hidden;
+  }
+  .final::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(253,92,2,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-asterisk { width: 68px; height: 68px; margin: 0 auto 26px; animation: spin-slow 16s linear infinite; }
+  .final-h2 {
+    font-weight: 800; font-size: clamp(30px, 4.8vw, 56px);
+    line-height: 1.05; letter-spacing: -0.025em; max-width: 680px; margin: 0 auto;
+  }
+  .final-h2 em { color: var(--orange); font-style: normal; }
+  .final-sub {
+    margin-top: 18px; font-family: 'DM Sans', sans-serif;
+    font-size: 17px; color: rgba(242,238,229,0.5);
+    max-width: 540px; margin-left: auto; margin-right: auto; line-height: 1.65;
+  }
+  .final-tagline {
+    margin-top: 24px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: rgba(242,238,229,0.3); letter-spacing: 0.06em;
+  }
+  .final-actions { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(242,238,229,0.08); padding: 40px 0;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; color: rgba(242,238,229,0.28);
+  }
+  .footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800; font-size: 20px; color: var(--offwhite);
+  }
+  .footer-logo span { color: var(--orange); }
+  .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+  .footer-links a { color: rgba(242,238,229,0.32); transition: color 200ms; }
+  .footer-links a:hover { color: var(--offwhite); }
+</style>
 </head>
 <body>
 
-<div id="root"></div>
+<!-- NAV -->
+<nav class="nav" id="inicio">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-logo">
+        <img src="assets/asterisk-orange.png" width="26" height="26" alt="">
+        ia<span>*</span>MOD
+      </a>
+      <div class="nav-links">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#diagnostico">Diagnóstico de Marca</a>
+        <a href="agendamento.html">Agenda Online</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <a href="#contato" class="nav-cta">Falar sobre meu projeto</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#inicio" class="mob-link">Início</a>
+  <a href="#sobre" class="mob-link">Sobre</a>
+  <a href="#servicos" class="mob-link">Serviços</a>
+  <a href="#diagnostico" class="mob-link">Diagnóstico</a>
+  <a href="agendamento.html" class="mob-link">Agenda Online</a>
+  <a href="#contato" class="mob-link">Contato</a>
+  <a href="#contato" class="mob-cta mob-link">Falar sobre meu projeto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      Design · Tecnologia · Ideias
+    </div>
+    <h1 class="hero-h1">
+      Design, tecnologia e ideias para negócios<br>
+      que estão prontos para dar um <em>passo a mais.</em>
+    </h1>
+    <p class="hero-sub">
+      A Ia MOD cria marcas, sites, páginas, diagnósticos e soluções digitais para profissionais autônomos e pequenos empresários que sentem que chegou a hora de sair do improviso e estruturar melhor a presença do próprio negócio.
+    </p>
+    <div class="hero-actions">
+      <a href="#contato" class="btn-primary">Falar sobre meu projeto →</a>
+      <a href="#servicos" class="btn-ghost">Conhecer os serviços</a>
+    </div>
+    <p class="hero-microcopy">Para quem já começou, já faz acontecer, mas sabe que agora precisa de mais clareza, presença e estrutura.</p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Design &amp; Identidade Visual</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Sites e Landing Pages</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Diagnóstico de Marca</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Agenda Online</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Soluções Digitais</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Materiais Visuais</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Estratégia Criativa</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Inteligência Artificial</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Design &amp; Identidade Visual</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Sites e Landing Pages</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Diagnóstico de Marca</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Agenda Online</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Soluções Digitais</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Materiais Visuais</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Estratégia Criativa</div>
+    <div class="marquee-item"><span class="marquee-dot">✦</span> Inteligência Artificial</div>
+  </div>
+</div>
+
+<!-- CONTEXT -->
+<section class="section" id="sobre">
+  <div class="container">
+    <div class="context-inner">
+      <div class="reveal">
+        <div class="section-tag">O momento certo</div>
+        <h2 class="context-quote">
+          Todo negócio chega em um ponto em que <em>improvisar começa a custar caro.</em>
+        </h2>
+      </div>
+      <div class="reveal body-text">
+        <p>No começo, muita coisa funciona no esforço. O atendimento acontece no WhatsApp, a identidade visual vai sendo adaptada conforme a necessidade, o site fica para depois, as ideias ficam espalhadas em conversas, prints, anotações e tentativas.</p>
+        <p>Mas chega uma hora em que o negócio cresce, muda ou amadurece — e aquilo que antes quebrava um galho começa a travar o próximo passo.</p>
+        <p>A marca já não representa tudo o que você entrega. A comunicação fica confusa. A presença digital parece menor do que o valor real do seu trabalho. E a tecnologia, que deveria ajudar, muitas vezes parece mais uma coisa complicada para resolver.</p>
+        <p>A Ia MOD nasce para atuar justamente nesse ponto: quando o negócio precisa ganhar forma, clareza e estrutura para continuar evoluindo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENTOMO → IA MOD -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="centomo-inner">
+      <div class="reveal">
+        <div class="section-tag">Nossa história</div>
+        <h2 class="section-h2">A experiência da Centomo ID, agora em uma fase mais <em>moderna, tecnológica e estratégica.</em></h2>
+        <div class="centomo-stat reveal">
+          <div class="centomo-stat-num">15+</div>
+          <div class="centomo-stat-label">anos de experiência em design, identidade visual e comunicação digital</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="centomo-pill">
+          Centomo ID <span class="centomo-arrow">→</span> Ia MOD
+        </div>
+        <div class="body-text">
+          <p>A Ia MOD nasce a partir da trajetória da Centomo ID, reunindo mais de 15 anos de experiência em design, identidade visual, criação de marcas, comunicação e presença digital.</p>
+          <p>Ao longo desse caminho, ficou cada vez mais claro que o cliente não precisa apenas de uma arte bonita, um logo isolado ou uma página qualquer. Ele precisa entender melhor o próprio negócio. Precisa comunicar com mais clareza. Precisa organizar ideias, serviços, público, narrativa, atendimento e presença digital de um jeito que faça sentido para a realidade dele.</p>
+          <p>Por isso, a Centomo ID evoluiu para a Ia MOD: uma empresa mais moderna, mais tecnológica e mais conectada com o que pequenos negócios realmente precisam hoje. Design continua sendo parte central do trabalho. Mas agora ele caminha junto com estratégia, tecnologia e inteligência artificial para criar soluções mais completas, práticas e alinhadas ao momento de cada cliente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="max-width:720px;">
+      <div class="section-tag">Posicionamento</div>
+      <h2 class="section-h2">A Ia MOD ajuda ideias a <em>ganharem forma.</em></h2>
+    </div>
+    <div class="reveal body-text" style="margin-top:28px; max-width:720px;">
+      <p>A Ia MOD é uma empresa de design, tecnologia e inteligência criativa voltada para profissionais autônomos, prestadores de serviço e pequenos empresários.</p>
+      <p>Nosso trabalho é ajudar negócios que já existem, ou que estão começando a se estruturar, a encontrarem uma forma mais clara de se apresentar, vender, atender e crescer.</p>
+      <p>Não partimos da ideia de que todo cliente precisa da mesma solução. Às vezes, o próximo passo é uma identidade visual. Às vezes, é uma landing page. Às vezes, é organizar melhor a narrativa da marca. Às vezes, é criar uma agenda online, um fluxo de atendimento ou uma estrutura mais inteligente para receber clientes.</p>
+      <p style="color:var(--offwhite);font-weight:700;font-size:17px;margin-top:20px;">A pergunta principal é sempre: o que esse negócio precisa agora para avançar com mais clareza?</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="section bg-dark" id="publico">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Para quem</div>
+      <h2 class="section-h2">Para quem a <em>Ia MOD foi criada</em></h2>
+      <p class="section-sub">A Ia MOD foi pensada para quem sente que o negócio já passou da fase do "vou fazendo do jeito que dá".</p>
+    </div>
+    <div class="audience-list">
+      <div class="audience-item reveal">
+        <div class="audience-icon">🧑‍💼</div>
+        <p class="audience-text">Para <strong>profissionais autônomos</strong> que querem se posicionar melhor.</p>
+      </div>
+      <div class="audience-item reveal">
+        <div class="audience-icon">🏢</div>
+        <p class="audience-text">Para <strong>pequenos empresários</strong> que precisam parecer tão profissionais quanto já são na prática.</p>
+      </div>
+      <div class="audience-item reveal">
+        <div class="audience-icon">📍</div>
+        <p class="audience-text">Para <strong>negócios locais</strong> que dependem de atendimento, indicação, presença digital e confiança.</p>
+      </div>
+      <div class="audience-item reveal">
+        <div class="audience-icon">📱</div>
+        <p class="audience-text">Para quem vende serviço, agenda horários, atende clientes, cria ofertas, divulga pelo Instagram ou pelo WhatsApp e percebe que precisa <strong>organizar melhor a própria comunicação</strong>.</p>
+      </div>
+      <div class="audience-item reveal">
+        <div class="audience-icon">💡</div>
+        <p class="audience-text">Para quem tem ideias, mas precisa transformar essas ideias em <strong>marca, página, sistema, narrativa ou experiência</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="servicos">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">O que fazemos</div>
+      <h2 class="section-h2">O que a <em>Ia MOD faz</em></h2>
+      <p class="section-sub">Soluções pensadas para o momento real do seu negócio.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon">✦</div>
+        <div class="service-name">Design e Identidade Visual</div>
+        <p class="service-desc">Criação ou reformulação de marcas para negócios que precisam de uma presença mais clara, bonita e coerente. Logotipo, paleta de cores, tipografia, elementos gráficos, direção visual, aplicações e materiais de apoio.</p>
+        <span class="service-ideal">Ideal para: quem sente que a imagem atual já não acompanha o valor do serviço que entrega.</span>
+      </div>
+
+      <div class="service-card reveal" id="diagnostico">
+        <div class="service-num">02</div>
+        <div class="service-icon">🔍</div>
+        <div class="service-name">Diagnóstico de Marca e Consultoria Criativa</div>
+        <p class="service-desc">Uma consultoria para levantar e organizar os principais pontos da marca: público-alvo, posicionamento, narrativa, tom de voz, diferenciais, percepção visual, oportunidades de comunicação e próximos passos.</p>
+        <span class="service-ideal">Ideal para: quem precisa de direção antes de investir em identidade, site, conteúdo ou automação.</span>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <div class="service-icon">🌐</div>
+        <div class="service-name">Sites e Landing Pages</div>
+        <p class="service-desc">Criação de páginas digitais para apresentar empresas, serviços, campanhas, produtos ou ofertas com mais clareza e estratégia. A página é pensada para organizar a informação, valorizar a marca e facilitar a tomada de decisão.</p>
+        <span class="service-ideal">Ideal para: quem precisa sair do improviso e ter um endereço digital próprio, claro e profissional.</span>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <div class="service-icon">⚙️</div>
+        <div class="service-name">Tecnologia e Soluções Digitais</div>
+        <p class="service-desc">Soluções simples e práticas para melhorar a experiência do cliente e organizar processos do negócio. Formulários inteligentes, fluxos de atendimento, automações, integrações e ferramentas digitais adaptadas a cada cliente.</p>
+        <span class="service-ideal">Ideal para: quem quer organizar melhor processos sem precisar entender tudo de tecnologia.</span>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <div class="service-icon">📅</div>
+        <div class="service-name">Agenda Online Personalizada</div>
+        <p class="service-desc">Uma solução de agendamento com aparência personalizada para o negócio, pensada para reduzir o vai e volta no atendimento e facilitar a escolha de serviços, horários e informações do cliente.</p>
+        <a href="agendamento.html" class="service-link">Conhecer a Agenda Online →</a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Materiais Visuais e Peças Digitais</div>
+        <p class="service-desc">Criação de materiais para comunicação da marca em canais digitais, apresentações, campanhas, posts, anúncios, PDFs e propostas. Sempre com foco em coerência visual e clareza de mensagem.</p>
+        <span class="service-ideal">Ideal para: quem precisa comunicar melhor sem parecer genérico.</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="reveal" style="max-width:620px;">
+      <div class="section-tag">Por que design + tecnologia + ideias</div>
+      <h2 class="section-h2">Porque uma boa ideia precisa de <em>forma para ser entendida.</em></h2>
+      <p class="section-sub">Ideias existem aos montes. O desafio é transformar uma ideia em algo que o cliente consiga perceber, entender, confiar e escolher.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">🎨</div>
+        <div class="why-title">Design</div>
+        <p class="why-desc">Organiza a percepção. Transforma informação em forma, identidade em presença.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Tecnologia</div>
+        <p class="why-desc">Facilita processos. Elimina o vai e volta e automatiza o que não precisa ser manual.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🧭</div>
+        <div class="why-title">Estratégia</div>
+        <p class="why-desc">Dá direção. Transforma informações soltas em posicionamento claro e decisões mais inteligentes.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon">🤖</div>
+        <div class="why-title">Inteligência Artificial</div>
+        <p class="why-desc">Ajuda a acelerar, estruturar e ampliar possibilidades com mais velocidade e inteligência.</p>
+      </div>
+    </div>
+    <p class="reveal body-text" style="margin-top:36px;max-width:620px;">Na Ia MOD, essas áreas trabalham juntas para criar soluções que não sejam apenas bonitas, mas úteis, coerentes e aplicáveis.</p>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="max-width:620px;">
+      <div class="section-tag">Método</div>
+      <h2 class="section-h2">Como <em>trabalhamos</em></h2>
+    </div>
+    <div class="method-steps">
+      <div class="method-step reveal">
+        <div class="step-col"><div class="step-num">1</div></div>
+        <div class="step-body">
+          <div class="step-title">Entendemos o momento do negócio</div>
+          <p class="step-desc">Antes de propor uma solução, buscamos entender o que existe hoje, o que está travando, o que precisa melhorar e qual é o próximo passo mais importante.</p>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <div class="step-col"><div class="step-num">2</div></div>
+        <div class="step-body">
+          <div class="step-title">Organizamos as ideias</div>
+          <p class="step-desc">Transformamos informações espalhadas em direção: público, narrativa, identidade, serviços, objetivos e prioridades.</p>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <div class="step-col"><div class="step-num">3</div></div>
+        <div class="step-body">
+          <div class="step-title">Criamos a solução</div>
+          <p class="step-desc">A entrega pode ser visual, estratégica, digital ou tecnológica, dependendo da necessidade do projeto.</p>
+        </div>
+      </div>
+      <div class="method-step reveal">
+        <div class="step-col"><div class="step-num">4</div></div>
+        <div class="step-body">
+          <div class="step-title">Deixamos pronto para uso</div>
+          <p class="step-desc">A ideia é entregar algo aplicável: uma marca mais clara, uma página publicada, uma consultoria estruturada, uma agenda funcionando ou uma comunicação mais organizada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS TABLE -->
+<section class="section bg-dark" id="solucoes">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Por onde começar</div>
+      <h2 class="section-h2">Por onde podemos <em>começar</em></h2>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="sol-table">
+        <thead>
+          <tr>
+            <th>Solução</th>
+            <th>Para quem é</th>
+            <th>Entrega principal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Diagnóstico de Marca</td>
+            <td>Quem precisa de clareza antes de criar</td>
+            <td>Público, narrativa, posicionamento e direção</td>
+          </tr>
+          <tr>
+            <td>Identidade Visual</td>
+            <td>Quem precisa profissionalizar a imagem</td>
+            <td>Marca, cores, fontes e sistema visual</td>
+          </tr>
+          <tr>
+            <td>Landing Page</td>
+            <td>Quem precisa apresentar ou vender uma oferta</td>
+            <td>Página estratégica e visualmente alinhada</td>
+          </tr>
+          <tr>
+            <td>Site Institucional</td>
+            <td>Quem precisa de presença digital própria</td>
+            <td>Estrutura online clara e profissional</td>
+          </tr>
+          <tr>
+            <td>Agenda Online</td>
+            <td>Quem atende por horário e perde tempo no WhatsApp</td>
+            <td><a href="agendamento.html">Ver landing da Agenda Online →</a></td>
+          </tr>
+          <tr>
+            <td>Materiais Visuais</td>
+            <td>Quem precisa comunicar melhor</td>
+            <td>Peças digitais, PDFs, apresentações e campanhas</td>
+          </tr>
+          <tr>
+            <td>Soluções Digitais</td>
+            <td>Quem precisa organizar processos</td>
+            <td>Fluxos, formulários, automações e integrações</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENCE -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="max-width:640px;">
+      <div class="section-tag">Diferencial</div>
+      <h2 class="section-h2">O diferencial está em entender o que o cliente <em>realmente precisa.</em></h2>
+    </div>
+    <div class="diff-items" style="max-width:680px;">
+      <div class="diff-item reveal"><span class="diff-dash">—</span><p class="diff-text">Nem todo negócio precisa começar por um site.</p></div>
+      <div class="diff-item reveal"><span class="diff-dash">—</span><p class="diff-text">Nem todo negócio precisa refazer a marca inteira.</p></div>
+      <div class="diff-item reveal"><span class="diff-dash">—</span><p class="diff-text">Nem todo negócio precisa de uma automação complexa.</p></div>
+      <div class="diff-item reveal"><span class="diff-dash">—</span><p class="diff-text">Às vezes, o que falta é clareza. Às vezes, é presença. Às vezes, é uma página simples. Às vezes, é uma identidade mais madura. Às vezes, é organizar o atendimento.</p></div>
+    </div>
+    <div class="reveal body-text" style="margin-top:32px;max-width:640px;">
+      <p>A Ia MOD trabalha para identificar esse ponto e criar soluções que façam sentido para o momento real do cliente. Sem empurrar tecnologia por moda. Sem design vazio. Sem estratégia genérica. A proposta é unir criatividade, experiência e tecnologia para criar algo que ajude o negócio a avançar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MID CTA -->
+<div class="mid-cta">
+  <div class="container">
+    <h2 class="mid-cta-h2 reveal">Seu negócio já começou. Agora ele precisa de <em>mais forma.</em></h2>
+    <p class="mid-cta-sub reveal">Se você sente que chegou a hora de dar um passo a mais, a Ia MOD pode ajudar a organizar suas ideias e transformar esse próximo passo em uma solução visual, estratégica ou digital.</p>
+    <a href="#contato" class="btn-primary reveal">Falar sobre meu projeto →</a>
+  </div>
+</div>
+
+<!-- FORM -->
+<section class="section bg-dark" id="contato">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Contato</div>
+      <h2 class="section-h2">Conte um pouco sobre <em>o seu projeto</em></h2>
+      <p class="section-sub">Para entender melhor o momento do seu negócio e indicar o caminho mais adequado, preencha as informações abaixo.</p>
+    </div>
+    <div class="form-wrap">
+      <!-- Sidebar -->
+      <div class="reveal">
+        <div class="form-aside-item">
+          <div class="form-aside-icon">⚡</div>
+          <p class="form-aside-text"><strong>Resposta rápida</strong><br>Retorno em até 24h úteis via WhatsApp ou e-mail.</p>
+        </div>
+        <div class="form-aside-item">
+          <div class="form-aside-icon">🎯</div>
+          <p class="form-aside-text"><strong>Sem compromisso</strong><br>Esse formulário é só para entender o seu momento. Nenhum valor cobrado antes de uma conversa.</p>
+        </div>
+        <div class="form-aside-item">
+          <div class="form-aside-icon">🛠️</div>
+          <p class="form-aside-text"><strong>Solução sob medida</strong><br>Cada projeto é analisado individualmente para indicar o caminho mais adequado.</p>
+        </div>
+      </div>
+      <!-- Form -->
+      <form id="project-form" class="reveal" novalidate>
+
+        <div class="form-fieldset-title">Dados de contato</div>
+        <div class="form-row">
+          <div>
+            <label class="form-label" for="f-name">Nome</label>
+            <input class="form-input" type="text" id="f-name" placeholder="Seu nome" required>
+          </div>
+          <div>
+            <label class="form-label" for="f-business">Nome do negócio</label>
+            <input class="form-input" type="text" id="f-business" placeholder="Nome do negócio">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label" for="f-whatsapp">WhatsApp</label>
+            <input class="form-input" type="tel" id="f-whatsapp" placeholder="(11) 99999-9999" required>
+          </div>
+          <div>
+            <label class="form-label" for="f-email">E-mail</label>
+            <input class="form-input" type="email" id="f-email" placeholder="seu@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-city">Cidade/Estado</label>
+          <input class="form-input" type="text" id="f-city" placeholder="Ex: São Paulo, SP">
+        </div>
+
+        <div class="form-fieldset-title">Sobre o negócio</div>
+        <div class="form-group">
+          <label class="form-label">Qual é o seu tipo de negócio?</label>
+          <div class="chip-group" data-group="business_type">
+            <label class="chip"><input type="checkbox" value="Profissional autônomo">Profissional autônomo</label>
+            <label class="chip"><input type="checkbox" value="Prestador de serviço">Prestador de serviço</label>
+            <label class="chip"><input type="checkbox" value="Pequena empresa">Pequena empresa</label>
+            <label class="chip"><input type="checkbox" value="Negócio local">Negócio local</label>
+            <label class="chip"><input type="checkbox" value="Loja / produto físico">Loja / produto físico</label>
+            <label class="chip"><input type="checkbox" value="Projeto em fase inicial">Projeto em fase inicial</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-sells">O que você vende ou pretende vender?</label>
+          <textarea class="form-textarea" id="f-sells" placeholder="Descreva seus produtos ou serviços..." rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-age">Há quanto tempo o negócio existe?</label>
+          <select class="form-select" id="f-age">
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option>Ainda é uma ideia</option>
+            <option>Menos de 1 ano</option>
+            <option>De 1 a 3 anos</option>
+            <option>De 3 a 5 anos</option>
+            <option>Mais de 5 anos</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hoje, onde seu negócio aparece?</label>
+          <div class="chip-group" data-group="presence">
+            <label class="chip"><input type="checkbox" value="Instagram">Instagram</label>
+            <label class="chip"><input type="checkbox" value="WhatsApp">WhatsApp</label>
+            <label class="chip"><input type="checkbox" value="Site">Site</label>
+            <label class="chip"><input type="checkbox" value="Google Meu Negócio">Google Meu Negócio</label>
+            <label class="chip"><input type="checkbox" value="Loja física">Loja física</label>
+            <label class="chip"><input type="checkbox" value="Indicação boca a boca">Indicação boca a boca</label>
+            <label class="chip"><input type="checkbox" value="Ainda não aparece de forma estruturada">Ainda não aparece de forma estruturada</label>
+          </div>
+        </div>
+
+        <div class="form-fieldset-title">Momento atual</div>
+        <div class="form-group">
+          <label class="form-label">O que você sente que precisa melhorar agora?</label>
+          <div class="chip-group" data-group="needs">
+            <label class="chip"><input type="checkbox" value="Identidade visual / marca">Identidade visual / marca</label>
+            <label class="chip"><input type="checkbox" value="Site ou landing page">Site ou landing page</label>
+            <label class="chip"><input type="checkbox" value="Comunicação e narrativa">Comunicação e narrativa</label>
+            <label class="chip"><input type="checkbox" value="Atendimento / WhatsApp">Atendimento / WhatsApp</label>
+            <label class="chip"><input type="checkbox" value="Agenda online">Agenda online</label>
+            <label class="chip"><input type="checkbox" value="Materiais visuais">Materiais visuais</label>
+            <label class="chip"><input type="checkbox" value="Automação ou solução digital">Automação ou solução digital</label>
+            <label class="chip"><input type="checkbox" value="Ainda não sei exatamente">Ainda não sei exatamente</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-difficulty">Qual é a principal dificuldade hoje?</label>
+          <textarea class="form-textarea" id="f-difficulty" placeholder="Descreva sua principal dificuldade..." rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-whynow">O que fez você sentir que está na hora de dar um passo a mais?</label>
+          <textarea class="form-textarea" id="f-whynow" placeholder="Conte o que motivou essa busca..." rows="3"></textarea>
+        </div>
+
+        <div class="form-fieldset-title">Sobre o projeto desejado</div>
+        <div class="form-group">
+          <label class="form-label">Você já tem uma ideia do que quer contratar?</label>
+          <div class="chip-group" data-group="hire">
+            <label class="chip"><input type="checkbox" value="Diagnóstico de Marca">Diagnóstico de Marca</label>
+            <label class="chip"><input type="checkbox" value="Identidade Visual">Identidade Visual</label>
+            <label class="chip"><input type="checkbox" value="Site Institucional">Site Institucional</label>
+            <label class="chip"><input type="checkbox" value="Landing Page">Landing Page</label>
+            <label class="chip"><input type="checkbox" value="Agenda Online">Agenda Online</label>
+            <label class="chip"><input type="checkbox" value="Materiais Visuais">Materiais Visuais</label>
+            <label class="chip"><input type="checkbox" value="Solução Digital / Automação">Solução Digital / Automação</label>
+            <label class="chip"><input type="checkbox" value="Quero ajuda para entender o melhor caminho">Quero ajuda para entender o melhor caminho</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label" for="f-identity">Você já tem identidade visual?</label>
+            <select class="form-select" id="f-identity">
+              <option value="" disabled selected>Selecione</option>
+              <option>Sim, e quero manter</option>
+              <option>Sim, mas quero melhorar</option>
+              <option>Tenho algo improvisado</option>
+              <option>Ainda não tenho</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="f-site">Você já tem site ou página online?</label>
+            <select class="form-select" id="f-site">
+              <option value="" disabled selected>Selecione</option>
+              <option>Sim</option>
+              <option>Não</option>
+              <option>Tenho, mas quero refazer</option>
+              <option>Tenho só Instagram/WhatsApp</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-refs">Existe alguma referência visual, site ou marca que você gosta?</label>
+          <textarea class="form-textarea" id="f-refs" placeholder="Links, nomes ou descrições..." rows="3"></textarea>
+        </div>
+        <div class="form-row">
+          <div>
+            <label class="form-label" for="f-timeline">Qual é o prazo ideal para começar?</label>
+            <select class="form-select" id="f-timeline">
+              <option value="" disabled selected>Selecione</option>
+              <option>O quanto antes</option>
+              <option>Nas próximas semanas</option>
+              <option>No próximo mês</option>
+              <option>Ainda estou pesquisando</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label" for="f-budget">Qual faixa de investimento você imagina?</label>
+            <select class="form-select" id="f-budget">
+              <option value="" disabled selected>Selecione</option>
+              <option>Até R$ 500</option>
+              <option>De R$ 500 a R$ 1.000</option>
+              <option>De R$ 1.000 a R$ 2.000</option>
+              <option>Acima de R$ 2.000</option>
+              <option>Ainda não sei</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-extra">Conte qualquer outra informação importante:</label>
+          <textarea class="form-textarea" id="f-extra" placeholder="Informações adicionais sobre o seu projeto..." rows="4"></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">Enviar meu projeto →</button>
+          <p class="form-privacy">Seus dados são usados apenas para entrar em contato sobre o projeto.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="container">
+    <img src="assets/asterisk-orange.png" alt="" class="final-asterisk">
+    <h2 class="final-h2 reveal">Está na hora de dar forma ao <em>próximo passo.</em></h2>
+    <p class="final-sub reveal">A Ia MOD existe para negócios que têm ideias, experiência e vontade de crescer, mas precisam transformar isso em presença, clareza e estrutura.</p>
+    <p class="final-tagline reveal">Design, tecnologia e ideias para negócios em movimento.</p>
+    <div class="final-actions reveal">
+      <a href="#contato" class="btn-primary">Falar sobre meu projeto →</a>
+      <a href="#servicos" class="btn-ghost">Conhecer os serviços</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">ia<span>*</span>MOD</div>
+      <div class="footer-links">
+        <a href="#servicos">Serviços</a>
+        <a href="agendamento.html">Agenda Online</a>
+        <a href="#contato">Contato</a>
+        <a href="https://wa.me/5511940723912" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <span>© 2025 Ia MOD · Todos os direitos reservados</span>
+    </div>
+  </div>
+</footer>
 
 <script>
-  // URL da API de pagamentos — altere para o domínio real da sua API no Coolify
-  window.API_URL = 'https://iamod-api-pagamentos.k474gt.easypanel.host';
-</script>
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-<script type="text/babel" src="src/atoms.jsx"></script>
-<script type="text/babel" src="src/Nav.jsx"></script>
-<script type="text/babel" src="src/Hero.jsx"></script>
-<script type="text/babel" src="src/ProblemSection.jsx"></script>
-<script type="text/babel" src="src/StatsCharts.jsx"></script>
-<script type="text/babel" src="src/HowItWorks.jsx"></script>
-<script type="text/babel" src="src/TypebotSim.jsx"></script>
-<script type="text/babel" src="src/Niches.jsx"></script>
-<script type="text/babel" src="src/Benefits.jsx"></script>
-<script type="text/babel" src="src/Pricing.jsx"></script>
-<script type="text/babel" src="src/CompareTable.jsx"></script>
-<script type="text/babel" src="src/Faq.jsx"></script>
-<script type="text/babel" src="src/FinalCta.jsx"></script>
-<script type="text/babel" src="src/Footer.jsx"></script>
+  // Chips
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('active');
+      chip.querySelector('input').checked = chip.classList.contains('active');
+    });
+  });
 
-<script type="text/babel">
-  const { useEffect } = React;
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
-  // Scroll reveal observer
-  const useReveal = () => {
-    useEffect(() => {
-      const els = document.querySelectorAll('.reveal');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      els.forEach(el => io.observe(el));
-      return () => io.disconnect();
-    }, []);
-  };
-
-  const App = () => {
-    useReveal();
-    return (
-      <>
-        <Nav />
-        <Hero />
-        <Marquee />
-        <ProblemSection />
-        <StatsCharts />
-        <Niches />
-        <HowItWorks />
-        <TypebotSim />
-        <Benefits />
-        <Pricing />
-        <CompareTable />
-        <Faq />
-        <FinalCta />
-        <Footer />
-      </>
-    );
-  };
-
-  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  // Form submit → WhatsApp
+  document.getElementById('project-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    const whatsapp = document.getElementById('f-whatsapp').value.trim();
+    if (!name || !whatsapp) {
+      alert('Por favor, preencha pelo menos seu nome e WhatsApp.');
+      return;
+    }
+    const getChips = (group) => {
+      const el = document.querySelector(`[data-group="${group}"]`);
+      if (!el) return '';
+      return Array.from(el.querySelectorAll('input:checked')).map(i => i.value).join(', ');
+    };
+    const business = document.getElementById('f-business').value.trim();
+    const needs = getChips('needs');
+    const hire = getChips('hire');
+    const timeline = document.getElementById('f-timeline').value;
+    const budget = document.getElementById('f-budget').value;
+    const msg = [
+      'Olá! Vim pelo site da Ia MOD e quero falar sobre meu projeto.',
+      `*Nome:* ${name}`,
+      business ? `*Negócio:* ${business}` : '',
+      needs ? `*Precisa melhorar:* ${needs}` : '',
+      hire ? `*Quer contratar:* ${hire}` : '',
+      timeline ? `*Prazo:* ${timeline}` : '',
+      budget ? `*Investimento:* ${budget}` : '',
+    ].filter(Boolean).join('\n');
+    window.open(`https://wa.me/5511940723912?text=${encodeURIComponent(msg)}`, '_blank');
+  });
 </script>
 
 </body>
