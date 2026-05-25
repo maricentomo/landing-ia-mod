@@ -86,7 +86,7 @@ const NicheCard = ({ label, icon, delay }) => {
         transitionDelay: `${delay}ms`,
       }}
     >
-      <Asterisk size={44} color="black" style={{ animation: 'spin-slow 10s linear infinite', flexShrink: 0 }} />
+      <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontSize: '40px', fontWeight: 800, lineHeight: 1, color: 'var(--orange)' }}>{icon}</div>
       <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', marginTop: 'auto' }}>{label}</div>
     </div>
   );

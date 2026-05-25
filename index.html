@@ -192,6 +192,7 @@
   }
   .strip-track img { width: 16px; height: 16px; }
   @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
   /* ───────── CONTEXT BLOCK ───────── */
   .ctx-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
@@ -629,6 +630,7 @@
 <section class="section">
   <div class="wrap">
     <div class="posit">
+      <img src="uploads/trabalhando.png" alt="" style="width: 200px; margin-bottom: 32px; animation: float 5.5s ease-in-out infinite; filter: drop-shadow(0 16px 40px rgba(253,92,2,0.2));">
       <span class="eyebrow">O que fazemos</span>
       <h2 style="margin-top: 24px;">
         <span class="cream">A ia MOD ajuda </span><span class="or">ideias a ganharem forma.</span>
@@ -663,32 +665,32 @@
 
     <div class="audience">
       <div class="aud-card">
-        <img class="aud-icon" src="assets/character-square.png" alt="">
+        <img class="aud-icon" src="assets/asterisk-orange.png" alt="" style="animation: spin-slow 12s linear infinite;">
         <h4>Autônomos prontos para se posicionar</h4>
         <p>Profissionais autônomos que querem se posicionar melhor e parecer tão profissionais quanto já são na prática.</p>
       </div>
       <div class="aud-card">
-        <img class="aud-icon" src="assets/character-planet.png" alt="">
+        <img class="aud-icon" src="assets/asterisk-orange.png" alt="" style="animation: spin-slow 12s linear infinite;">
         <h4>Pequenos negócios em crescimento</h4>
         <p>Pequenos empresários que precisam organizar a marca, a comunicação e a presença digital para acompanhar o ritmo do negócio.</p>
       </div>
       <div class="aud-card">
-        <img class="aud-icon" src="assets/character-triangle.png" alt="">
+        <img class="aud-icon" src="assets/asterisk-orange.png" alt="" style="animation: spin-slow 12s linear infinite;">
         <h4>Negócios locais &amp; de atendimento</h4>
         <p>Quem depende de atendimento, indicação, presença digital e confiança no dia a dia — e precisa de mais estrutura.</p>
       </div>
       <div class="aud-card">
-        <img class="aud-icon" src="assets/asterisk-orange.png" alt="">
+        <img class="aud-icon" src="assets/asterisk-orange.png" alt="" style="animation: spin-slow 12s linear infinite;">
         <h4>Quem vende serviço e agenda</h4>
         <p>Para quem agenda horários, atende clientes, cria ofertas e divulga pelo Instagram ou WhatsApp e precisa organizar a própria comunicação.</p>
       </div>
       <div class="aud-card">
-        <img class="aud-icon" src="assets/character-spiral.png" alt="">
+        <img class="aud-icon" src="assets/asterisk-orange.png" alt="" style="animation: spin-slow 12s linear infinite;">
         <h4>Negócios em fase de estruturação</h4>
         <p>Para quem está começando a profissionalizar e quer evitar refazer tudo daqui a um ano — começar com base e direção.</p>
       </div>
       <div class="aud-card">
-        <img class="aud-icon" src="assets/asterisk-offwhite.png" alt="">
+        <img class="aud-icon" src="assets/asterisk-orange.png" alt="" style="animation: spin-slow 12s linear infinite;">
         <h4>Quem tem ideias e precisa dar forma</h4>
         <p>Para quem tem ideias, mas precisa transformar essas ideias em marca, página, sistema, narrativa ou experiência.</p>
       </div>
@@ -851,63 +853,6 @@
   </div>
 </section>
 
-<!-- ════════════════ TABELA DE SOLUÇÕES ════════════════ -->
-<section class="section section--sm">
-  <div class="wrap">
-    <div style="max-width: 800px;">
-      <span class="eyebrow">Por onde começar</span>
-      <h2 style="margin-top: 18px; max-width: 18ch;">
-        <span class="cream">Soluções da ia MOD em </span><span class="or">um quadro só.</span>
-      </h2>
-      <p style="margin-top: 20px; font-size: 17px; max-width: 60ch;">
-        Cada negócio começa por onde faz mais sentido. Use o quadro abaixo para identificar a entrada mais natural para o seu momento.
-      </p>
-    </div>
-
-    <div class="sol-table">
-      <div class="sol-row head">
-        <div class="sol-cell">Solução</div>
-        <div class="sol-cell">Para quem é</div>
-        <div class="sol-cell">Entrega principal</div>
-      </div>
-      <div class="sol-row">
-        <div class="sol-cell name">Diagnóstico de Marca</div>
-        <div class="sol-cell who">Quem precisa de clareza antes de criar qualquer coisa.</div>
-        <div class="sol-cell give">Público, narrativa, posicionamento e direção.</div>
-      </div>
-      <div class="sol-row">
-        <div class="sol-cell name">Identidade Visual</div>
-        <div class="sol-cell who">Quem precisa profissionalizar a imagem do negócio.</div>
-        <div class="sol-cell give">Marca, cores, fontes e sistema visual.</div>
-      </div>
-      <div class="sol-row">
-        <div class="sol-cell name">Landing Page</div>
-        <div class="sol-cell who">Quem precisa apresentar ou vender uma oferta.</div>
-        <div class="sol-cell give">Página estratégica e visualmente alinhada.</div>
-      </div>
-      <div class="sol-row">
-        <div class="sol-cell name">Site Institucional</div>
-        <div class="sol-cell who">Quem precisa de presença digital própria.</div>
-        <div class="sol-cell give">Estrutura online clara e profissional.</div>
-      </div>
-      <div class="sol-row">
-        <div class="sol-cell name">Agenda Online</div>
-        <div class="sol-cell who">Quem atende por horário e perde tempo no WhatsApp.</div>
-        <div class="sol-cell give"><a href="agendamento.html">Ver landing da Agenda Online →</a></div>
-      </div>
-      <div class="sol-row">
-        <div class="sol-cell name">Materiais Visuais</div>
-        <div class="sol-cell who">Quem precisa comunicar melhor em canais digitais.</div>
-        <div class="sol-cell give">Peças, PDFs, apresentações e campanhas.</div>
-      </div>
-      <div class="sol-row">
-        <div class="sol-cell name">Soluções Digitais</div>
-        <div class="sol-cell who">Quem precisa organizar processos do negócio.</div>
-        <div class="sol-cell give">Fluxos, formulários, automações e integrações.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ════════════════ DIFERENCIAL ════════════════ -->
 <section class="section">
@@ -954,23 +899,22 @@
 <!-- ════════════════ FORMULÁRIO ════════════════ -->
 <section class="section" id="contato">
   <div class="wrap">
-    <div class="form-grid">
 
-      <div class="form-intro">
-        <span class="eyebrow">Falar sobre meu projeto</span>
-        <h2 style="margin-top: 18px;">
-          <span class="cream">Conte um pouco sobre o </span><span class="or">seu projeto.</span>
-        </h2>
-        <p class="lead">
-          Para entender melhor o momento do seu negócio e indicar o caminho mais adequado, preencha as informações abaixo.
-        </p>
-        <div class="form-perks">
-          <div class="form-perk">Resposta em até 2 dias úteis no canal que você preferir.</div>
-          <div class="form-perk">Indicamos o caminho — não empurramos serviço que não faz sentido.</div>
-          <div class="form-perk">Suas informações ficam só com a ia MOD.</div>
-        </div>
-      </div>
+    <div style="margin-bottom: 56px;">
+      <span class="eyebrow">Falar sobre meu projeto</span>
+      <h2 style="margin-top: 18px;">
+        <span class="cream">Conte um pouco sobre o </span><span class="or">seu projeto.</span>
+      </h2>
+      <p class="lead" style="margin-top: 20px;">
+        Para entender melhor o momento do seu negócio e indicar o caminho mais adequado, escolha como prefere começar.
+      </p>
+    </div>
 
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+
+    <!-- COL ESQUERDA: Formulário -->
+    <div>
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px;">Opção 01 — Formulário</div>
       <form class="form-card" id="projeto-form" novalidate>
 
         <!-- 01 — Contato -->
@@ -1067,8 +1011,17 @@
           <button type="submit" class="form-submit">Enviar meu projeto →</button>
         </div>
       </form>
-
     </div>
+
+    <!-- COL DIREITA: Typebot -->
+    <div>
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px;">Opção 02 — Chat Interativo</div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden;">
+        <typebot-standard style="width: 100%; height: 700px;"></typebot-standard>
+      </div>
+    </div>
+
+    </div><!-- /grid -->
   </div>
 </section>
 
@@ -1173,6 +1126,19 @@
 
     window.open(`https://wa.me/5511940723912?text=${encodeURIComponent(texto)}`, '_blank');
   });
+</script>
+
+<script>
+  const typebotInitScript = document.createElement("script");
+  typebotInitScript.type = "module";
+  typebotInitScript.innerHTML = `import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js'
+
+Typebot.initStandard({
+  typebot: "iamod-site",
+  apiHost: "https://bot-typebot-viewer.k474gt.easypanel.host",
+});
+`;
+  document.body.append(typebotInitScript);
 </script>
 
 </body>
