@@ -1,0 +1,484 @@
+{
+  "version": "6",
+  "id": "iamod-site",
+  "name": "ia MOD — Fale Conosco",
+  "groups": [
+    {
+      "id": "g-start",
+      "title": "Start",
+      "graphCoordinates": { "x": 0, "y": 0 },
+      "blocks": [
+        {
+          "id": "b-start",
+          "type": "start",
+          "label": "Start",
+          "outgoingEdgeId": "e-start-contato"
+        }
+      ]
+    },
+    {
+      "id": "g-contato",
+      "title": "Dados de contato",
+      "graphCoordinates": { "x": 600, "y": 0 },
+      "blocks": [
+        {
+          "id": "b-intro",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              {
+                "type": "p",
+                "children": [{ "text": "Olá! Vou fazer algumas perguntas rápidas para entender o seu momento e indicar o melhor caminho. 👋" }]
+              }
+            ]
+          }
+        },
+        {
+          "id": "b-nome-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Qual é o seu nome?" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-nome-input",
+          "type": "input",
+          "inputType": "text",
+          "options": {
+            "variableId": "v-nome",
+            "isRequired": true,
+            "labels": { "placeholder": "Seu nome", "button": "→" }
+          }
+        },
+        {
+          "id": "b-negocio-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "E o nome do seu negócio?" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-negocio-input",
+          "type": "input",
+          "inputType": "text",
+          "options": {
+            "variableId": "v-nome-negocio",
+            "isRequired": false,
+            "labels": { "placeholder": "Nome do negócio (pode ser informal)", "button": "→" }
+          },
+          "outgoingEdgeId": "e-contato-negocio"
+        }
+      ]
+    },
+    {
+      "id": "g-negocio",
+      "title": "Sobre o negócio",
+      "graphCoordinates": { "x": 1200, "y": 0 },
+      "blocks": [
+        {
+          "id": "b-tipo-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  { "text": "Olá " },
+                  { "type": "variable", "variableId": "v-nome" },
+                  { "text": ", qual é o seu tipo de negócio?" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "b-tipo-input",
+          "type": "input",
+          "inputType": "choice",
+          "items": [
+            { "id": "tipo-1", "content": "Profissional autônomo" },
+            { "id": "tipo-2", "content": "Prestador de serviço" },
+            { "id": "tipo-3", "content": "Pequena empresa" },
+            { "id": "tipo-4", "content": "Negócio local" },
+            { "id": "tipo-5", "content": "Loja / produto físico" },
+            { "id": "tipo-6", "content": "Projeto em fase inicial" },
+            { "id": "tipo-7", "content": "Outro" }
+          ],
+          "options": {
+            "variableId": "v-tipo-negocio",
+            "isMultipleChoice": false,
+            "isSearchable": false
+          }
+        },
+        {
+          "id": "b-vende-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "O que você vende ou pretende vender? (opcional)" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-vende-input",
+          "type": "input",
+          "inputType": "text",
+          "options": {
+            "variableId": "v-o-que-vende",
+            "isRequired": false,
+            "labels": { "placeholder": "Descreva brevemente...", "button": "→" }
+          }
+        },
+        {
+          "id": "b-tempo-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Há quanto tempo o negócio existe?" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-tempo-input",
+          "type": "input",
+          "inputType": "choice",
+          "items": [
+            { "id": "tempo-1", "content": "Ainda é uma ideia" },
+            { "id": "tempo-2", "content": "Menos de 1 ano" },
+            { "id": "tempo-3", "content": "De 1 a 3 anos" },
+            { "id": "tempo-4", "content": "De 3 a 5 anos" },
+            { "id": "tempo-5", "content": "Mais de 5 anos" }
+          ],
+          "options": {
+            "variableId": "v-tempo-negocio",
+            "isMultipleChoice": false,
+            "isSearchable": false
+          }
+        },
+        {
+          "id": "b-aparece-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Hoje, onde seu negócio aparece? (pode marcar mais de um)" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-aparece-input",
+          "type": "input",
+          "inputType": "choice",
+          "items": [
+            { "id": "ap-1", "content": "Instagram" },
+            { "id": "ap-2", "content": "WhatsApp" },
+            { "id": "ap-3", "content": "Site" },
+            { "id": "ap-4", "content": "Google Meu Negócio" },
+            { "id": "ap-5", "content": "Loja física" },
+            { "id": "ap-6", "content": "Indicação boca a boca" },
+            { "id": "ap-7", "content": "Ainda não aparece de forma estruturada" }
+          ],
+          "options": {
+            "variableId": "v-onde-aparece",
+            "isMultipleChoice": true,
+            "buttonLabel": "Confirmar"
+          },
+          "outgoingEdgeId": "e-negocio-momento"
+        }
+      ]
+    },
+    {
+      "id": "g-momento",
+      "title": "Momento atual",
+      "graphCoordinates": { "x": 1800, "y": 0 },
+      "blocks": [
+        {
+          "id": "b-melhorar-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  { "type": "variable", "variableId": "v-nome" },
+                  { "text": ", o que você sente que precisa melhorar agora? (pode marcar mais de um)" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "b-melhorar-input",
+          "type": "input",
+          "inputType": "choice",
+          "items": [
+            { "id": "mel-1", "content": "Identidade visual / marca" },
+            { "id": "mel-2", "content": "Site ou landing page" },
+            { "id": "mel-3", "content": "Comunicação e narrativa" },
+            { "id": "mel-4", "content": "Atendimento / organização no WhatsApp" },
+            { "id": "mel-5", "content": "Agenda online" },
+            { "id": "mel-6", "content": "Materiais visuais" },
+            { "id": "mel-7", "content": "Automação ou solução digital" },
+            { "id": "mel-8", "content": "Ainda não sei exatamente" }
+          ],
+          "options": {
+            "variableId": "v-precisa-melhorar",
+            "isMultipleChoice": true,
+            "buttonLabel": "Confirmar"
+          }
+        },
+        {
+          "id": "b-dificuldade-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Qual é a principal dificuldade hoje? (opcional)" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-dificuldade-input",
+          "type": "input",
+          "inputType": "text",
+          "options": {
+            "variableId": "v-dificuldade",
+            "isRequired": false,
+            "labels": { "placeholder": "Pode ser curto, só para a gente entender melhor...", "button": "→" }
+          },
+          "outgoingEdgeId": "e-momento-projeto"
+        }
+      ]
+    },
+    {
+      "id": "g-projeto",
+      "title": "Sobre o projeto",
+      "graphCoordinates": { "x": 2400, "y": 0 },
+      "blocks": [
+        {
+          "id": "b-identidade-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Você já tem identidade visual?" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-identidade-input",
+          "type": "input",
+          "inputType": "choice",
+          "items": [
+            { "id": "id-1", "content": "Sim, e quero manter" },
+            { "id": "id-2", "content": "Sim, mas quero melhorar" },
+            { "id": "id-3", "content": "Tenho algo improvisado" },
+            { "id": "id-4", "content": "Estou aberto a sugestões" },
+            { "id": "id-5", "content": "Ainda não tenho" }
+          ],
+          "options": {
+            "variableId": "v-tem-identidade",
+            "isMultipleChoice": false,
+            "isSearchable": false
+          }
+        },
+        {
+          "id": "b-prazo-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Qual é o prazo ideal para começar?" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-prazo-input",
+          "type": "input",
+          "inputType": "choice",
+          "items": [
+            { "id": "prazo-1", "content": "O quanto antes" },
+            { "id": "prazo-2", "content": "Nas próximas semanas" },
+            { "id": "prazo-3", "content": "No próximo mês" },
+            { "id": "prazo-4", "content": "Ainda estou pesquisando" }
+          ],
+          "options": {
+            "variableId": "v-prazo",
+            "isMultipleChoice": false,
+            "isSearchable": false
+          }
+        },
+        {
+          "id": "b-investimento-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Qual faixa de investimento você imagina para esse projeto?" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-investimento-input",
+          "type": "input",
+          "inputType": "choice",
+          "items": [
+            { "id": "inv-1", "content": "Até R$ 500" },
+            { "id": "inv-2", "content": "De R$ 500 a R$ 1.000" },
+            { "id": "inv-3", "content": "De R$ 1.000 a R$ 2.500" },
+            { "id": "inv-4", "content": "De R$ 2.500 a R$ 5.000" },
+            { "id": "inv-5", "content": "Acima de R$ 5.000" },
+            { "id": "inv-6", "content": "Ainda não defini um valor" }
+          ],
+          "options": {
+            "variableId": "v-investimento",
+            "isMultipleChoice": false,
+            "isSearchable": false
+          }
+        },
+        {
+          "id": "b-mais-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              { "type": "p", "children": [{ "text": "Conta mais sobre o seu projeto (opcional)" }] }
+            ]
+          }
+        },
+        {
+          "id": "b-mais-input",
+          "type": "input",
+          "inputType": "text",
+          "options": {
+            "variableId": "v-mais-sobre",
+            "isRequired": false,
+            "labels": { "placeholder": "Qualquer detalhe que ajude a entender o seu momento...", "button": "→" }
+          },
+          "outgoingEdgeId": "e-projeto-final"
+        }
+      ]
+    },
+    {
+      "id": "g-final",
+      "title": "Finalização",
+      "graphCoordinates": { "x": 3000, "y": 0 },
+      "blocks": [
+        {
+          "id": "b-final-label",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  { "type": "variable", "variableId": "v-nome" },
+                  { "text": ", agora deixe seu telefone e e-mail para que a gente possa entrar em contato com você:" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "b-telefone-input",
+          "type": "input",
+          "inputType": "phone",
+          "options": {
+            "variableId": "v-telefone",
+            "isRequired": true,
+            "labels": { "placeholder": "(00) 00000-0000", "button": "→" },
+            "defaultCountryCode": "BR"
+          }
+        },
+        {
+          "id": "b-email-input",
+          "type": "input",
+          "inputType": "email",
+          "options": {
+            "variableId": "v-email",
+            "isRequired": true,
+            "labels": { "placeholder": "seuemail@exemplo.com", "button": "Enviar" }
+          }
+        },
+        {
+          "id": "b-obrigado",
+          "type": "bubble",
+          "content": {
+            "type": "richText",
+            "richText": [
+              {
+                "type": "p",
+                "children": [
+                  { "text": "Obrigado, " },
+                  { "type": "variable", "variableId": "v-nome" },
+                  { "text": "! Recebemos tudo certinho. ✅" }
+                ]
+              },
+              {
+                "type": "p",
+                "children": [{ "text": "Vamos analisar as suas respostas e entrar em contato em até 2 dias úteis pelo canal que você preferir." }]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-start-contato",
+      "from": { "groupId": "g-start", "blockId": "b-start" },
+      "to": { "groupId": "g-contato" }
+    },
+    {
+      "id": "e-contato-negocio",
+      "from": { "groupId": "g-contato", "blockId": "b-negocio-input" },
+      "to": { "groupId": "g-negocio" }
+    },
+    {
+      "id": "e-negocio-momento",
+      "from": { "groupId": "g-negocio", "blockId": "b-aparece-input" },
+      "to": { "groupId": "g-momento" }
+    },
+    {
+      "id": "e-momento-projeto",
+      "from": { "groupId": "g-momento", "blockId": "b-dificuldade-input" },
+      "to": { "groupId": "g-projeto" }
+    },
+    {
+      "id": "e-projeto-final",
+      "from": { "groupId": "g-projeto", "blockId": "b-mais-input" },
+      "to": { "groupId": "g-final" }
+    }
+  ],
+  "variables": [
+    { "id": "v-nome",            "name": "nome" },
+    { "id": "v-nome-negocio",    "name": "nome_negocio" },
+    { "id": "v-tipo-negocio",    "name": "tipo_negocio" },
+    { "id": "v-o-que-vende",     "name": "o_que_vende" },
+    { "id": "v-tempo-negocio",   "name": "tempo_negocio" },
+    { "id": "v-onde-aparece",    "name": "onde_aparece" },
+    { "id": "v-precisa-melhorar","name": "precisa_melhorar" },
+    { "id": "v-dificuldade",     "name": "dificuldade" },
+    { "id": "v-tem-identidade",  "name": "tem_identidade" },
+    { "id": "v-prazo",           "name": "prazo" },
+    { "id": "v-investimento",    "name": "investimento" },
+    { "id": "v-mais-sobre",      "name": "mais_sobre" },
+    { "id": "v-telefone",        "name": "telefone" },
+    { "id": "v-email",           "name": "email" }
+  ],
+  "theme": {},
+  "settings": {}
+}
